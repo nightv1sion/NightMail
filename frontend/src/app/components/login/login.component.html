@@ -1,0 +1,32 @@
+<div class="auth-register">
+    <div class="label">
+        <label for="email">Email</label>
+    </div>
+    <div class="input">
+        <input id="email" [(ngModel)]="user.email"/>
+    </div>
+
+    <div class="label">
+        <label for="password">Password</label>
+    </div>
+    <div class="input">
+        <input id="password" [(ngModel)]="user.password" />
+    </div>
+
+    <div class="checkbox">
+        <input type="checkbox" id="rememberMe" [(ngModel)]="user.rememberMe"/>
+        <label for="rememberMe">Remember me</label>
+    </div>
+
+    <div class="loginButton">
+        <a href="#" (click)="onSubmit()" >    
+            <div class="login-link">
+                Login
+            </div>
+        </a>
+    </div>
+
+    <div class="link-to-register">
+        <a routerLink="/register">Dont have an Account?</a>
+    </div>
+</div>

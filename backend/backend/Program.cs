@@ -20,7 +20,14 @@ builder.Services.ConfigureServiceManager();
 
 builder.Services.ConfigureJwtAuthentication(builder.Configuration);
 
+builder.Services.ConfigureRepositoryManager();
+
+builder.Services.ConfigureCors();
+
 var app = builder.Build();
+
+app.UseCors("_policy");
+
 app.ConfigureExceptionHandler();
 
 // Configure the HTTP request pipeline.

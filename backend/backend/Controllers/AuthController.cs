@@ -42,5 +42,28 @@ namespace backend.Controllers
             var token = await _serviceManager.AuthenticationService.LoginUserAsync(user);
             return Ok(token);
         }
+
+        [HttpPost("refresh-token")]
+        public async Task<IActionResult> RefreshToken(TokenDTO token)
+        {
+            var newToken = await _serviceManager.AuthenticationService.RefreshTokenAsync(token);
+            return Ok(newToken);
+        }
+
+        [HttpPost("revoke/{email}")]
+        public async Task<IActionResult> Revoke(string email)
+        {
+            await _serviceManager.AuthenticationService.RevokeUserAsync(email);
+
+            return NoContent();
+        }
+
+        [HttpPost("revoke-all")]
+        public async Task<IActionResult> RevokeAll()
+        {
+            await _serviceManager.AuthenticationService.RevokeAllAsync();
+
+            return NoContent();
+        }
     }
 }

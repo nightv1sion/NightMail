@@ -1,0 +1,18 @@
+.header {
+    background-color: #D9D9D9;
+    height: 100px;
+}
+
+.logo-link {
+    margin-left: 5%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+
+.logo-link > a{
+    color: #071165;
+    font-size: 40px;
+    line-height: 100%;
+}

@@ -1,0 +1,69 @@
+.auth-register {
+    background-color: #585858;
+    width: 23%;
+    margin: auto;
+    height: 400px;
+    box-shadow: 1px 1px 4px #585858;
+    border-radius: 10px;
+    padding-top: 1%;
+
+}
+
+.labelandinput {
+    margin-top: 3%;
+}
+.label {
+    width: 90%;
+    margin: auto;
+    color: white;
+    font-size: 18px;
+}
+
+.input {
+    text-align: center;
+}
+
+.input > input {
+    width: 90%;
+    
+}
+
+input, input:focus {
+    background-color: #585858;
+    border-left: none;
+    border-right: none;
+    border-top:  none;
+    color: white;
+}
+
+.checkbox {
+    margin-left: 4%;
+    margin-top: 4%;
+}
+
+.checkbox > label {
+    color: white;
+}
+
+.login-link {
+    color: white;
+    border: 1px white solid;
+    border-radius: 50px;
+    width: 100%;
+    text-align: center;
+}
+
+.loginButton {
+    width: 40%;
+    margin: auto;
+    margin-top: 4%;
+}
+
+.link-to-register {
+    text-align: center;
+    margin-top: 2%;
+}
+
+.link-to-register > a {
+    color: #071165;
+}

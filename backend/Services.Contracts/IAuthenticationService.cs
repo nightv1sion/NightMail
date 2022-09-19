@@ -12,5 +12,8 @@ namespace Services.Contracts
     {
         Task<IdentityResult> RegisterUserAsync(UserForRegistrationDTO userDto);
         Task<TokenDTO> LoginUserAsync(UserForLoginDTO userDto);
+        Task RevokeUserAsync(string username);
+        Task RevokeAllAsync();
+        Task<TokenDTO> RefreshTokenAsync(TokenDTO token);
     }
 }

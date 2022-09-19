@@ -13,3 +13,5 @@ C:\Users\Данила\Desktop\pet-projects\NightMail\backend\Repository\obj\Debu
 C:\Users\Данила\Desktop\pet-projects\NightMail\backend\Repository\bin\Debug\net6.0\Entities.dll
 C:\Users\Данила\Desktop\pet-projects\NightMail\backend\Repository\bin\Debug\net6.0\Entities.pdb
 C:\Users\Данила\Desktop\pet-projects\NightMail\backend\Repository\obj\Debug\net6.0\Repository.csproj.CopyComplete
+C:\Users\Данила\Desktop\pet-projects\NightMail\backend\Repository\bin\Debug\net6.0\Contracts.dll
+C:\Users\Данила\Desktop\pet-projects\NightMail\backend\Repository\bin\Debug\net6.0\Contracts.pdb

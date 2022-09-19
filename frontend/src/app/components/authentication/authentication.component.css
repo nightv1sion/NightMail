@@ -1,0 +1,9 @@
+.page--header > p {
+    color: white;
+    font-size: 40px;
+    margin-top: 2%;
+    margin-bottom: 1%;
+}
+.page--header {
+    text-align: center;
+}

@@ -17,9 +17,6 @@ namespace Shared.DataTransferObjects
         [DataType(DataType.Password)]
         public string Password { get; init; }
         
-        [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage = "Passwords must match")]
-        public string ConfirmPassword { get; init; }
         [Required]
         public bool RememberMe { get; init; }
     }

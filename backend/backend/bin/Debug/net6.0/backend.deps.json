@@ -1518,6 +1518,14 @@
           "System.Xml.ReaderWriter": "4.3.0"
         }
       },
+      "Contracts/1.0.0": {
+        "dependencies": {
+          "Entities": "1.0.0"
+        },
+        "runtime": {
+          "Contracts.dll": {}
+        }
+      },
       "Entities/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.8"
@@ -1528,6 +1536,7 @@
       },
       "Repository/1.0.0": {
         "dependencies": {
+          "Contracts": "1.0.0",
           "Entities": "1.0.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.8",
           "Microsoft.EntityFrameworkCore": "6.0.8",
@@ -1543,6 +1552,7 @@
           "Entities": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.8",
           "Microsoft.AspNetCore.Identity": "2.2.0",
+          "Repository": "1.0.0",
           "Services.Contracts": "1.0.0",
           "Shared": "1.0.0"
         },
@@ -2705,6 +2715,11 @@
       "sha512": "sha512-lJ8AxvkX7GQxpC6GFCeBj8ThYVyQczx2+f/cWHJU8tjS7YfI6Cv6bon70jVEgs2CiFbmmM8b9j1oZVx0dSI2Ww==",
       "path": "system.xml.xmldocument/4.3.0",
       "hashPath": "system.xml.xmldocument.4.3.0.nupkg.sha512"
+    },
+    "Contracts/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "Entities/1.0.0": {
       "type": "project",

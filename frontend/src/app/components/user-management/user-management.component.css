@@ -1,0 +1,57 @@
+.user--management{
+    background-color: #585858;
+    width: 23%;
+    margin: auto;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 1px 1px 4px #585858;
+    border-radius: 10px;
+}
+
+.add-account-button-wrapper {
+    background-color: #B1AFAF;
+    margin-top: 10%;
+}
+
+.add-account-button {
+    display: flex;
+    align-items: center;
+}
+
+.add-account-text {
+    color: white;
+    font-size: 32px;
+    margin: 0;
+    margin-left: 3%;
+}
+
+.white-plus {
+    color: white;
+    font-size: 54px;
+    margin-left: 5%;
+}
+
+.logged-accounts {
+    flex: 70%;
+}
+
+.register-link-wrapper {
+    flex: 18%;
+    width: 50%;
+    align-self: center;
+}
+
+.register-link-wrapper > a{
+    padding: 0;
+}
+
+.register-link {
+    color: white;
+    border: 1px white solid;
+    border-radius: 50px;
+    width: 100%;
+    text-align: center;
+}
+
+

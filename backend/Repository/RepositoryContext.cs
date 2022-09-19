@@ -13,5 +13,6 @@ namespace Repository
     {
         public RepositoryContext(DbContextOptions<RepositoryContext> options) : base(options) {}
         public DbSet<User> Users { get; set; }
+        public DbSet<Mail> Mails { get; set; }
     }
 }

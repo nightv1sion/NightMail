@@ -1,0 +1,70 @@
+<div class="auth-register">
+    <div class="labelandinput">
+        <div class="label">
+            <label for="firstname">First Name <span [hidden]="firstName.valid || firstName.pristine">is not valid</span></label>
+            
+        </div>
+        <div class="input">
+            <input id="firstname" [(ngModel)]="user.firstName" required #firstName="ngModel"/>
+        </div>
+    </div>
+    
+    <div class="labelandinput">
+        <div class="label">
+            <label for="lastname">Last Name</label>
+        </div>
+        <div class="input">
+            <input id="lastname" [(ngModel)]="user.lastName"/>
+        </div>
+    </div>
+
+    <div class="labelandinput">
+        <div class="label">
+            <label for="birthday">Birthday</label>
+        </div>
+        <div class="input">
+            <input type="date" id="birthday" [(ngModel)]="user.birthday"/>
+        </div>
+    </div>
+
+    <div class="labelandinput">
+        <div class="label">
+            <label for="email">Email</label>
+        </div>
+        <div class="input">
+            <input id="email" [(ngModel)]="user.email"/>
+        </div>
+    </div>
+
+    <div class="labelandinput">
+        <div class="label">
+            <label for="password">Password</label>
+        </div>
+        <div class="input">
+            <input id="password" [(ngModel)]="user.password"/>
+        </div>
+    </div>
+
+    <div class="labelandinput">
+        <div class="label">
+            <label for="confirmPassword">Confirm Password</label>
+        </div>
+        <div class="input">
+            <input id="confirmPassword" [(ngModel)]="user.confirmPassword"/>
+        </div>
+    </div>
+
+    <div class="registerButton">
+        <a (click)="onSubmit()" href="#" >    
+            <div class="register-link">
+                Register
+            </div>
+        </a>
+    </div>
+
+    <div class="linktologin">
+        <a routerLink="/login">
+            Have an Account?
+        </a>
+    </div>
+</div>

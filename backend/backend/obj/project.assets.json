@@ -2473,6 +2473,19 @@
           "lib/netstandard1.3/System.Xml.XmlDocument.dll": {}
         }
       },
+      "Contracts/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Entities": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Contracts.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Contracts.dll": {}
+        }
+      },
       "Entities/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -2490,6 +2503,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
+          "Contracts": "1.0.0",
           "Entities": "1.0.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.8",
           "Microsoft.EntityFrameworkCore": "6.0.8",
@@ -2510,6 +2524,7 @@
           "Entities": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.8",
           "Microsoft.AspNetCore.Identity": "2.2.0",
+          "Repository": "1.0.0",
           "Services.Contracts": "1.0.0",
           "Shared": "1.0.0"
         },
@@ -8094,6 +8109,11 @@
         "system.xml.xmldocument.4.3.0.nupkg.sha512",
         "system.xml.xmldocument.nuspec"
       ]
+    },
+    "Contracts/1.0.0": {
+      "type": "project",
+      "path": "../Contracts/Contracts.csproj",
+      "msbuildProject": "../Contracts/Contracts.csproj"
     },
     "Entities/1.0.0": {
       "type": "project",

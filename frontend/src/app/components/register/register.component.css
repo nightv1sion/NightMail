@@ -1,0 +1,65 @@
+.auth-register {
+    background-color: #585858;
+    width: 23%;
+    margin: auto;
+    height: 500px;
+    box-shadow: 1px 1px 4px #585858;
+    border-radius: 10px;
+    padding-top: 0.3%;
+}
+
+.labelandinput {
+    margin-top: 3%;
+}
+.label {
+    width: 90%;
+    margin: auto;
+    color: white;
+    font-size: 18px;
+}
+
+.input {
+    text-align: center;
+}
+
+.input > input {
+    width: 90%;
+    
+}
+
+input, input:focus {
+    background-color: #585858;
+    border-left: none;
+    border-right: none;
+    border-top:  none;
+    color: white;
+}
+
+.register-link {
+    color: white;
+    border: 1px white solid;
+    border-radius: 50px;
+    width: 100%;
+    text-align: center;
+}
+
+.registerButton {
+    width: 40%;
+    margin: auto;
+    margin-top: 4%;
+}
+
+.register-link {
+    
+    background-color: #585858;
+}
+
+
+.linktologin {
+    text-align: center;
+    margin-top: 2%;
+}
+
+.linktologin > a {
+    color: #071165;
+}

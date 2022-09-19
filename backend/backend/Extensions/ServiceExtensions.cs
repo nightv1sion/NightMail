@@ -1,4 +1,5 @@
-﻿using Entities.ErrorModels;
+﻿using Contracts;
+using Entities.ErrorModels;
 using Entities.ExceptionModels;
 using Entities.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -89,6 +90,19 @@ namespace backend.Extensions
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Secret"]))
                 };
             });
+        }
+
+        public static void ConfigureRepositoryManager(this IServiceCollection services)
+        {
+            services.AddScoped<IRepositoryManager, RepositoryManager>();
+        }
+
+        public static void ConfigureCors(this IServiceCollection services)
+        {
+            services.AddCors(options => options.AddPolicy("_policy", policy =>
+            {
+                policy.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod();
+            }));
         }
     }
 }

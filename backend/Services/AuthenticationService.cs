@@ -4,6 +4,7 @@ using Entities.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using Repository;
 using Services.Contracts;
 using Shared.DataTransferObjects;
 using System;
@@ -57,7 +58,10 @@ namespace Services
                 var refreshToken = GenerateRefreshToken();
 
                 user.RefreshToken = refreshToken;
-                user.RefreshTokenExpiryTime = DateTime.Now.AddDays(int.Parse(_configuration["JWT:RefreshTokenValidityInDays"]));
+                if (userDto.RememberMe)
+                    user.RefreshTokenExpiryTime = DateTime.Now.AddDays(int.Parse(_configuration["JWT:RefreshTokenValidityInDays"]));
+                else
+                    user.RefreshTokenExpiryTime = DateTime.Now.AddMinutes(60);
 
                 await _userManager.UpdateAsync(user);
 
@@ -95,6 +99,27 @@ namespace Services
             await _userManager.UpdateAsync(user);
 
             return new TokenDTO { AccessToken = new JwtSecurityTokenHandler().WriteToken(newAccessToken), RefreshToken = newRefreshToken, Expiration = newAccessToken.ValidTo };
+        }
+
+        public async Task RevokeUserAsync(string email)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
+                throw new UserDoesNotExist(email);
+
+            user.RefreshToken = null;
+            user.RefreshTokenExpiryTime = default;
+            await _userManager.UpdateAsync(user);
+        }
+
+        public async Task RevokeAllAsync()
+        {
+            foreach(var user in _userManager.Users.ToList())
+            {
+                user.RefreshToken = null;
+                user.RefreshTokenExpiryTime = default;
+                await _userManager.UpdateAsync(user);
+            }
         }
         private JwtSecurityToken GetToken(List<Claim> claims)
         {
