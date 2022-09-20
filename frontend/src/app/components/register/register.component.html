@@ -1,65 +1,90 @@
 <div class="auth-register">
+    <div *ngIf="isError == true" class="errormessage">
+        Something went wrong when posting to server
+    </div>
     <div class="labelandinput">
         <div class="label">
-            <label for="firstname">First Name <span [hidden]="firstName.valid || firstName.pristine">is not valid</span></label>
+
+            <label for="firstname" [class]="{'not-valid': !firstName.pristine && !firstName.valid}">
+                First Name <span [hidden]="firstName.valid || firstName.pristine">is not valid (first letter must be uppercase)</span>
+            </label>
             
         </div>
         <div class="input">
-            <input id="firstname" [(ngModel)]="user.firstName" required #firstName="ngModel"/>
+            <input [class]="{'not-valid-input': !firstName.pristine && !firstName.valid}" id="firstname" [(ngModel)]="user.firstName" required #firstName="ngModel" pattern="^[A-Z][a-z]+$"/>
         </div>
     </div>
     
     <div class="labelandinput">
         <div class="label">
-            <label for="lastname">Last Name</label>
+            <label for="lastname" [class]="{'not-valid': !lastName.pristine && !lastName.valid}">
+                Last Name <span [hidden]="lastName.valid || lastName.pristine">is not valid (first letter must be uppercase)</span>
+            </label>
         </div>
         <div class="input">
-            <input id="lastname" [(ngModel)]="user.lastName"/>
+            <input [class]="{'not-valid-input': !lastName.pristine && !lastName.valid}" id="lastname" [(ngModel)]="user.lastName" pattern="^[A-Z][a-z]+$" #lastName="ngModel"/>
         </div>
     </div>
 
     <div class="labelandinput">
         <div class="label">
-            <label for="birthday">Birthday</label>
+            <label for="birthday" [class]="{'not-valid': !lastName.pristine && !lastName.valid}">
+                Birthday <span [hidden]="birthday.valid || birthday.pristine">is required</span>
+            </label>
         </div>
         <div class="input">
-            <input type="date" id="birthday" [(ngModel)]="user.birthday"/>
+            <input [class]="{'not-valid-input': !birthday.pristine && !birthday.valid}" type="date" id="birthday" [(ngModel)]="user.birthday" required #birthday="ngModel"/>
         </div>
     </div>
 
     <div class="labelandinput">
         <div class="label">
-            <label for="email">Email</label>
+            <label for="email" [class]="{'not-valid': !email.pristine && !email.valid}">
+                Email <span [hidden]="email.valid || email.pristine">is required and must end with '@nightmail.com'</span>
+            </label>
         </div>
         <div class="input">
-            <input id="email" [(ngModel)]="user.email"/>
+            <input [class]="{'not-valid-input': !email.pristine && !email.valid}" id="email" [(ngModel)]="user.email" #email="ngModel" required pattern="^[0-9a-zA-Z]+@nightmail.com$"/>
         </div>
     </div>
 
     <div class="labelandinput">
         <div class="label">
-            <label for="password">Password</label>
+            <label for="password" [class]="{'not-valid': !password.pristine && !password.valid}">
+                Password <span [hidden]="password.valid || password.pristine">must have eight characters, at least one uppercase letter, one lowercase letter and one number</span>
+            </label>
         </div>
         <div class="input">
-            <input id="password" [(ngModel)]="user.password"/>
+            <input type="password" [class]="{'not-valid-input': !password.pristine && !password.valid}" id="password" [(ngModel)]="user.password" #password="ngModel" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"/>
         </div>
     </div>
 
     <div class="labelandinput">
         <div class="label">
-            <label for="confirmPassword">Confirm Password</label>
+            <label for="confirmPassword" [class]="{'not-valid': !confirmPassword.pristine && !matchingPassword(password, confirmPassword)}">
+                Password Confirmation <span [hidden]="matchingPassword(password, confirmPassword)">must match the password</span>
+            </label>
         </div>
         <div class="input">
-            <input id="confirmPassword" [(ngModel)]="user.confirmPassword"/>
+            <input type="password" [class]="{'not-valid-input': !confirmPassword.pristine && !matchingPassword(password, confirmPassword)}" id="confirmPassword" [(ngModel)]="user.confirmPassword" #confirmPassword="ngModel"/>
         </div>
     </div>
 
-    <div class="registerButton">
-        <a (click)="onSubmit()" href="#" >    
-            <div class="register-link">
+    <div class="registerButton" *ngIf="firstName.valid && lastName.valid && email.valid && password.valid && matchingPassword(password, confirmPassword)" >
+        <a (click)="onSubmit()" href="#">    
+            <div class="register-link" >
+                Register    
+            </div>
+        </a>
+    </div>
+
+    <div class="disabledRegisterButton" *ngIf="firstName.invalid || lastName.invalid || email.invalid || password.invalid || !matchingPassword(password, confirmPassword)">
+        <a>
+            <div class="register-link-disabled">
                 Register
             </div>
         </a>
+
     </div>
 
     <div class="linktologin">

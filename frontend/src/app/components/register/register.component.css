@@ -2,7 +2,7 @@
     background-color: #585858;
     width: 23%;
     margin: auto;
-    height: 500px;
+    height: fit-content;
     box-shadow: 1px 1px 4px #585858;
     border-radius: 10px;
     padding-top: 0.3%;
@@ -35,7 +35,7 @@ input, input:focus {
     color: white;
 }
 
-.register-link {
+.register-link, .register-link-disabled{
     color: white;
     border: 1px white solid;
     border-radius: 50px;
@@ -43,13 +43,13 @@ input, input:focus {
     text-align: center;
 }
 
-.registerButton {
+.registerButton, .disabledRegisterButton {
     width: 40%;
     margin: auto;
     margin-top: 4%;
 }
 
-.register-link {
+.register-link, .register-link-disabled {
     
     background-color: #585858;
 }
@@ -62,4 +62,27 @@ input, input:focus {
 
 .linktologin > a {
     color: #071165;
+}
+
+.not-valid {
+    color: red;
+}
+
+.not-valid-input {
+    border-bottom-color: red;
+}
+
+input:focus {
+    outline: none;
+}
+
+.register-link-disabled {
+    border-color: grey;
+    color: grey;
+}
+
+.errormessage{
+    color: red;
+    width: 90%;
+    margin:auto;
 }
