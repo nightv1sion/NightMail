@@ -45,7 +45,7 @@ namespace Services
         {
             var user = await _userManager.FindByEmailAsync(userDto.Email);
             if (user == null)
-                throw new UserDoesNotExist(userDto.Email);
+                throw new UserNotFoundException(userDto.Email);
 
             if(await _userManager.CheckPasswordAsync(user, userDto.Password))
             {
@@ -105,7 +105,7 @@ namespace Services
         {
             var user = await _userManager.FindByEmailAsync(email);
             if (user == null)
-                throw new UserDoesNotExist(email);
+                throw new UserNotFoundException(email);
 
             user.RefreshToken = null;
             user.RefreshTokenExpiryTime = default;

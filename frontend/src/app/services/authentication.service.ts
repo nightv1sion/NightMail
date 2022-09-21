@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { catchError, map, Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { UserForLogin } from '../data/datatransferbojects/UserForLogin';
 import { UserForRegistrationDto } from '../data/datatransferbojects/UserForRegistration';

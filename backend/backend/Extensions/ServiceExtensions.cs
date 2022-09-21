@@ -54,6 +54,7 @@ namespace backend.Extensions
                             ConflictException => StatusCodes.Status409Conflict,
                             BadRequestException => StatusCodes.Status400BadRequest,
                             NonAuthorizedException => StatusCodes.Status401Unauthorized,
+                            NotFoundException => StatusCodes.Status404NotFound,
                             _ => StatusCodes.Status500InternalServerError
                         };
                     }

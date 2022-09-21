@@ -9,6 +9,8 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 })
 export class LoginComponent implements OnInit {
 
+  errorMessage: string = "";
+
   user: UserForLogin = new UserForLogin();
 
   constructor(private authentication: AuthenticationService) { }
@@ -17,8 +19,19 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(){
-    this.authentication.loginUser(this.user).subscribe(result => console.log(result));
+    this.authentication.loginUser(this.user).subscribe({
+      next: (data) => {console.log("all is done"); console.log(data);},
+      error: (error) => 
+      { console.log("error"); console.log(error); 
+        if(error["status"] == 404 || error["status"]==400)
+          this.errorMessage = "Email or password is wrong";
+        else
+          this.errorMessage = "Something went wrong when posting to the server";
+      }
+    });
     return false;
   }
+
+
 
 }

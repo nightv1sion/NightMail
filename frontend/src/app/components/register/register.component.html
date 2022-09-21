@@ -1,6 +1,6 @@
 <div class="auth-register">
-    <div *ngIf="isError == true" class="errormessage">
-        Something went wrong when posting to server
+    <div *ngIf="errorMessage" class="errormessage">
+        {{errorMessage}}
     </div>
     <div class="labelandinput">
         <div class="label">
@@ -28,12 +28,12 @@
 
     <div class="labelandinput">
         <div class="label">
-            <label for="birthday" [class]="{'not-valid': !lastName.pristine && !lastName.valid}">
+            <label for="birthday" [class]="{'not-valid': !birthday.pristine && (!birthday.valid || !birthdayIsValid())}">
                 Birthday <span [hidden]="birthday.valid || birthday.pristine">is required</span>
             </label>
         </div>
         <div class="input">
-            <input [class]="{'not-valid-input': !birthday.pristine && !birthday.valid}" type="date" id="birthday" [(ngModel)]="user.birthday" required #birthday="ngModel"/>
+            <input [class]="{'not-valid-input': !birthday.pristine && !birthdayIsValid()}" type="date" id="birthday" [(ngModel)]="user.birthday" required #birthday="ngModel"/>
         </div>
     </div>
 
@@ -62,7 +62,7 @@
     <div class="labelandinput">
         <div class="label">
             <label for="confirmPassword" [class]="{'not-valid': !confirmPassword.pristine && !matchingPassword(password, confirmPassword)}">
-                Password Confirmation <span [hidden]="matchingPassword(password, confirmPassword)">must match the password</span>
+                Password Confirmation <span [hidden]="confirmPassword.pristine || matchingPassword(password, confirmPassword)">must match the password</span>
             </label>
         </div>
         <div class="input">

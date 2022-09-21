@@ -85,4 +85,5 @@ input:focus {
     color: red;
     width: 90%;
     margin:auto;
+    text-align: center;
 }

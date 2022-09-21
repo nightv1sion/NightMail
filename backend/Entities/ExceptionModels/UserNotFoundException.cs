@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Entities.ExceptionModels
 {
-    public class UserDoesNotExist : BadRequestException
+    public class UserNotFoundException : NotFoundException
     {
-        public UserDoesNotExist(string email) : base($"User with email: {email} does not exist") {}
+        public UserNotFoundException(string email) : base($"User with email: {email} does not exist") {}
     }
 }

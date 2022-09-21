@@ -30,7 +30,7 @@ namespace Services
         {
             var user = await _userManager.FindByEmailAsync(userEmail);
             if (user == null)
-                throw new UserDoesNotExist(userEmail);
+                throw new UserNotFoundException(userEmail);
             
             var mails = await _repository.Mail.GetAllMailsForUserAsync(user, trackChanges);
             var mailsDto = _mapper.Map<IEnumerable<MailDTO>>(mails);

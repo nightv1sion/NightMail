@@ -1,16 +1,19 @@
 <div class="auth-register">
+    <div *ngIf="errorMessage" class="errormessage">
+        {{errorMessage}}
+    </div>
     <div class="label">
         <label for="email">Email</label>
     </div>
     <div class="input">
-        <input id="email" [(ngModel)]="user.email"/>
+        <input id="email" [(ngModel)]="user.email" #email="ngModel" required/>
     </div>
 
     <div class="label">
         <label for="password">Password</label>
     </div>
     <div class="input">
-        <input id="password" [(ngModel)]="user.password" />
+        <input id="password" [(ngModel)]="user.password" #password="ngModel" required/>
     </div>
 
     <div class="checkbox">
@@ -18,12 +21,23 @@
         <label for="rememberMe">Remember me</label>
     </div>
 
-    <div class="loginButton">
+
+
+    <div class="loginButton" *ngIf="email.valid && password.valid">
         <a href="#" (click)="onSubmit()" >    
             <div class="login-link">
                 Login
             </div>
         </a>
+    </div>
+
+    <div class="disabledLoginButton" *ngIf="email.invalid || password.invalid">
+        <a>
+            <div class="login-link-disabled">
+                Login
+            </div>
+        </a>
+
     </div>
 
     <div class="link-to-register">
