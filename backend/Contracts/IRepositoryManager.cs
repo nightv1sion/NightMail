@@ -8,7 +8,9 @@ namespace Contracts
 {
     public interface IRepositoryManager
     {
-        IMailRepository Mail { get; }
+        IUserRepository UserRepository { get; }
+        IUserProfileImageRepository UserProfileImageRepository { get; }
         Task SaveAsync();
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Entities.Models;
 using Shared.DataTransferObjects;
+using Shared.Helpers;
 
 namespace backend
 {
@@ -11,10 +12,11 @@ namespace backend
             CreateMap<UserForRegistrationDTO, User>().ForMember(entity => entity.UserName, 
                 opt => opt.MapFrom(dto => dto.Email));
 
-            CreateMap<User, UserDTO>();
-            CreateMap<Mail, MailDTO>()
-                .ForMember(mDto => mDto.Sender, opt => opt.MapFrom(m => m.Sender))
-                .ForMember(mDto => mDto.Receiver, opt => opt.MapFrom(m => m.Receiver));
+            CreateMap<UserForUpdateDTO, User>()
+                .ForMember(entity => entity.UserProfileImage, opts => opts.MapFrom(dto => dto.Image.ToUserProfileImage(dto)));
+
+            CreateMap<User, UserDTO>()
+                .ForMember(entity => entity.Image, opts => opts.MapFrom(dto => dto.UserProfileImage.ToIFormFile()));
         }
     }
 }

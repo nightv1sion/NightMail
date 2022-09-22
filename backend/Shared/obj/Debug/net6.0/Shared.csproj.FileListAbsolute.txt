@@ -10,3 +10,6 @@ C:\Users\Данила\Desktop\pet-projects\NightMail\backend\Shared\obj\Debug\ne
 C:\Users\Данила\Desktop\pet-projects\NightMail\backend\Shared\obj\Debug\net6.0\refint\Shared.dll
 C:\Users\Данила\Desktop\pet-projects\NightMail\backend\Shared\obj\Debug\net6.0\Shared.pdb
 C:\Users\Данила\Desktop\pet-projects\NightMail\backend\Shared\obj\Debug\net6.0\ref\Shared.dll
+C:\Users\Данила\Desktop\pet-projects\NightMail\backend\Shared\bin\Debug\net6.0\Entities.dll
+C:\Users\Данила\Desktop\pet-projects\NightMail\backend\Shared\bin\Debug\net6.0\Entities.pdb
+C:\Users\Данила\Desktop\pet-projects\NightMail\backend\Shared\obj\Debug\net6.0\Shared.csproj.CopyComplete

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Contracts
 {
-    public interface IMailRepository
+    public interface IUserRepository
     {
-        Task<IEnumerable<Mail>> GetAllMailsForUserAsync(User user, bool trackChanges);
-        void CreateMail(Mail mail);
+        User GetUserById(Guid id, bool trackChanges);
+        void UpdateUser(User user);
     }
 }

@@ -395,7 +395,11 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\Данила\\Desktop\\pet-projects\\NightMail\\backend\\Entities\\Entities.csproj": {
+                "projectPath": "C:\\Users\\Данила\\Desktop\\pet-projects\\NightMail\\backend\\Entities\\Entities.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -407,6 +411,16 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Http": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Http.Features": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

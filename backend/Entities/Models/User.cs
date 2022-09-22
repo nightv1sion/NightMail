@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 
 namespace Entities.Models
 {
-    public class User : IdentityUser
+    public class User : IdentityUser<Guid>
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime BirthDay { get; set; }
         public string? RefreshToken { get; set; }
         public DateTime RefreshTokenExpiryTime { get; set; }
+        public UserProfileImage? UserProfileImage { get; set; }
     }
 }

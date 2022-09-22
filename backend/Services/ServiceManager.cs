@@ -16,14 +16,13 @@ namespace Services
     public class ServiceManager : IServiceManager
     {
         private Lazy<IAuthenticationService> _authentication;
-        private Lazy<IMailService> _mail;
+        private Lazy<IUserService> _userService;
         public ServiceManager(UserManager<User> userManager, IMapper mapper, IConfiguration configuration, IRepositoryManager repository)
         {
             _authentication = new Lazy<IAuthenticationService>(new AuthenticationService(userManager, mapper, configuration));
-            _mail = new Lazy<IMailService>(new MailService(repository, userManager, mapper));
+            _userService = new Lazy<IUserService>(new UserService(repository, mapper));
         }
-
         public IAuthenticationService AuthenticationService => _authentication.Value;
-        public IMailService MailService => _mail.Value;
+        public IUserService UserService => _userService.Value;
     }
 }

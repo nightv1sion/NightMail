@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace Services.Contracts
 {
-    public interface IMailService
+    public interface IUserService
     {
-        Task<IEnumerable<MailDTO>> GetMailsAsync(string userEmail, bool trackChanges);
+        UserDTO GetUserById(Guid id, bool trackChanges);
+        Task UpdateUserAsync(UserForUpdateDTO userDto);
     }
 }
