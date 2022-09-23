@@ -3,6 +3,7 @@ using Contracts;
 using Entities.ExceptionModels;
 using Services.Contracts;
 using Shared.DataTransferObjects;
+using Shared.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,10 +27,8 @@ namespace Services
             if (user == null)
                 throw new UserNotFoundException(id);
 
-            user.UserProfileImage = _repository.UserProfileImageRepository.GetImageByUserId(id, trackChanges);
-            user.UserProfileImage.User = user;
             var userDto = _mapper.Map<UserDTO>(user);
-            
+
             return userDto;
         }
 

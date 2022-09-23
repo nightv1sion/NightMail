@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Services.Contracts;
 using Shared.DataTransferObjects;
 
 namespace backend.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
@@ -15,10 +17,11 @@ namespace backend.Controllers
             _service = service;
         }
 
-        [HttpGet("{id:guid}")]
-        public async Task<ActionResult> GetUser(Guid id)
+        [HttpGet]
+        public async Task<ActionResult> GetUser()
         {
-            var user = _service.UserService.GetUserById(id, false);
+            Guid userId = Guid.Parse(User.Claims.FirstOrDefault(claim => claim.Type == "UserId").Value);
+            var user = _service.UserService.GetUserById(userId, false);
             return Ok(user);
         }
 

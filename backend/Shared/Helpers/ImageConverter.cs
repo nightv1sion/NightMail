@@ -1,6 +1,5 @@
 ﻿using Entities.Models;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Internal;
 using Shared.DataTransferObjects;
 using System;
 using System.Collections.Generic;

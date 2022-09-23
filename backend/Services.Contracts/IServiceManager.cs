@@ -10,5 +10,6 @@ namespace Services.Contracts
     {
         IAuthenticationService AuthenticationService { get; }
         IUserService UserService { get; }
+        IUserProfileImageService UserProfileImageService { get; }
     }
 }

@@ -51,7 +51,7 @@ namespace Services
             {
                 var authClaims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Email, user.Email)
+                    new Claim("UserId", user.Id.ToString()),
                 };
 
                 var token = GetToken(authClaims);
@@ -124,9 +124,11 @@ namespace Services
         private JwtSecurityToken GetToken(List<Claim> claims)
         {
             var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetSection("JWT").GetSection("Secret").Value));
+            var expiresAt = DateTime.Now.AddMinutes(int.Parse(_configuration["JWT:TokenValidityInMinutes"]));
+            
             var token = new JwtSecurityToken(issuer: _configuration["JWT:validIssuer"],
                 audience: _configuration["JWT:validAudience"],
-                expires: DateTime.Now.AddMinutes(int.Parse(_configuration["JWT:TokenValidityInMinutes"])),
+                expires: expiresAt,
                 claims: claims,
                 signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256));
 
