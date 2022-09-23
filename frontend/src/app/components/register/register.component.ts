@@ -5,6 +5,7 @@ import { Router, RouteReuseStrategy } from '@angular/router';
 import { map, catchError, Observable, of } from 'rxjs';
 import { UserForRegistrationDto } from 'src/app/data/datatransferbojects/UserForRegistration';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,9 @@ export class RegisterComponent implements OnInit {
 
   user: UserForRegistrationDto = new UserForRegistrationDto();
 
-  constructor(private authentication: AuthenticationService, private router: Router) { }
+  constructor(private authentication: AuthenticationService, private router: Router, private userService: UserService) {
+    userService.tempUser.firstName = "SOMMMM";
+   }
 
   ngOnInit(): void {
   } 
