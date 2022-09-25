@@ -55,3 +55,34 @@
 }
 
 
+.userImage {
+    margin-left: 2%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    flex: 20%;
+}
+
+.add-account-button-wrapper{
+    display: flex;
+}
+
+
+
+.userFullName{
+    display: flex;
+    align-items: center;
+    flex: 55%;
+}   
+.userFullName > p {
+    color: white;
+    font-size: 32px;
+    
+}
+.menubutton{
+    align-self: center;
+    flex: 6%;
+}
+.add-account-button-wrapper-wo-logged-user{
+    background-color: #B1AFAF;
+    margin-top: 10%;
+}

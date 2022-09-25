@@ -13,9 +13,15 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './services/auth-interceptor.service';
 import { UserService } from './services/user.service';
 import { AuthenticationService } from './services/authentication.service';
+import { BlueLinkComponent } from './components/blue-link/blue-link.component';
+import { BorderedButtonComponent } from './components/bordered-button/bordered-button.component';
+import { DisabledBorderedButtonComponent } from './components/disabled-bordered-button/disabled-bordered-button.component';
+import { ErrorMessageComponent } from './components/error-message/error-message.component';
+import { RoundUserImageComponent } from './components/round-user-image/round-user-image.component';
+import { RoundUserInitialsComponent } from './components/round-user-initials/round-user-initials.component';
 
 export function tokenGetter(){
-  return localStorage.getItem("jwt");
+  return localStorage.getItem("JwtToken");
 }
 
 @NgModule({
@@ -26,6 +32,12 @@ export function tokenGetter(){
     UserManagementComponent,
     LoginComponent,
     RegisterComponent,
+    BlueLinkComponent,
+    BorderedButtonComponent,
+    DisabledBorderedButtonComponent,
+    ErrorMessageComponent,
+    RoundUserImageComponent,
+    RoundUserInitialsComponent,
   ],
   imports: [
     BrowserModule,

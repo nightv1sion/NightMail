@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { catchError, map, Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { UserForLogin } from '../data/datatransferbojects/UserForLogin';
@@ -21,13 +21,20 @@ export class AuthenticationService {
   }
 
   loginUser(user: UserForLogin, errorHandler: (error: any) => void){
+    const userService = this.injector.get(UserService);
     return this.http.post(this.authUrl + "/login", user).subscribe({
-      next: (data:any) => {console.log(data); this.setToken(data);},
+      next: (data:any) => {console.log(data); this.setToken(data); userService.setUser()},
       error: errorHandler
     });
   }
 
-  getToken(){
+  logOutUser(){
+    this.deleteToken();
+    let userService = this.injector.get(UserService);
+    userService.removeUser();
+  }
+
+  getToken() : any{
     let token = localStorage.getItem("JwtToken");
     if(token)
     {
@@ -39,15 +46,13 @@ export class AuthenticationService {
 
   setToken(data: any){
     localStorage.setItem("JwtToken", JSON.stringify(data));
-    const decodedClaims:any = jwtDecode(data["accessToken"]);
-    const decodedExpiration:string = data["expiration"];
-    if(decodedClaims && decodedExpiration)
-    {
-      this.userService.setUser(new Date(decodedExpiration));
-    }
   }
 
-  constructor(private http: HttpClient, private userService: UserService) {
-   }
+  private deleteToken(){
+    localStorage.removeItem("JwtToken");
+  }
+
+  constructor(private http: HttpClient, private injector: Injector) {
+  }
    
 }

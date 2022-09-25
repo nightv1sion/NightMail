@@ -1,5 +1,25 @@
-<header class="header">
+<div class="header">
     <div class="logo-link">
         <a routerLink="">NightMail</a>
     </div>
-</header>
+
+    <div *ngIf="userService.user" class="add-account-button-wrapper">
+            <a [routerLink]="'/'">
+                <div class="userImage" *ngIf="userService.user.imageUrl">
+                    <app-round-user-image [image]="userService.getPhotoUrl()"></app-round-user-image>
+                </div>
+                <div class="userImage" *ngIf="!userService.user.imageUrl">
+                    <app-round-user-initials [firstName]="userService.user.firstName" [lastName]="userService.user.lastName"></app-round-user-initials>
+                </div>
+            </a>
+    
+            
+            <a [routerLink]="'/'">
+                <div class="userFullName">
+                    <p>
+                        {{userService.user.firstName}}
+                    </p>
+                </div>
+            </a>
+    </div>
+</div>

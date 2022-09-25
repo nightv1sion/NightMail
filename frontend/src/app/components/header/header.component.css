@@ -1,6 +1,7 @@
 .header {
     background-color: #D9D9D9;
     height: 100px;
+    display: flex;
 }
 
 .logo-link {
@@ -8,6 +9,7 @@
     height: 100%;
     display: flex;
     align-items: center;
+    flex: 88%;
 }
 
 
@@ -15,4 +17,30 @@
     color: #071165;
     font-size: 40px;
     line-height: 100%;
+}
+
+.add-account-button-wrapper{
+    flex: 12%;
+    display: flex;
+    align-items: center;
+} 
+
+ .userFullName{
+    color: white;
+    display: flex;
+    align-items: center;
+    margin-left: 5%;
+    flex: 60%;
+
+}
+
+.userFullName p {
+    font-size: 32px;
+    color: #071165;
+}
+
+.userImage {
+    display: flex;
+    align-items: center;
+    flex: 40%;
 }

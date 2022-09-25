@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserForLogin } from 'src/app/data/datatransferbojects/UserForLogin';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -15,10 +14,13 @@ export class LoginComponent implements OnInit {
   user: UserForLogin = new UserForLogin();
 
   constructor(private authentication: AuthenticationService) {
-   }
+    this.onSubmit = this.onSubmit.bind(this);
+  }
 
   ngOnInit(): void {
   }
+
+  
 
   onSubmit(){
     this.authentication.loginUser(this.user, (error) => 
@@ -31,5 +33,4 @@ export class LoginComponent implements OnInit {
     });
     return false;
   }
-
 }

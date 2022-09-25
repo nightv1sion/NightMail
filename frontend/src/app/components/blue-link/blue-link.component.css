@@ -1,0 +1,8 @@
+.bluelink {
+    text-align: center;
+    margin-top: 2%;
+}
+
+.bluelink > a {
+    color: #071165;
+}

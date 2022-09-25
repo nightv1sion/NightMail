@@ -1,5 +1,5 @@
 <div class="user--management">
-    <div class="add-account-button-wrapper">
+    <div *ngIf="!userService.user" class="add-account-button-wrapper-wo-logged-user">
         <a routerLink="login">
             <div class="add-account-button">
                 <div class="white-plus">+</div>
@@ -7,6 +7,30 @@
             </div>
         </a>
     </div>
+
+    <div *ngIf="userService.user" class="add-account-button-wrapper">
+        <div class="userImage" *ngIf="userService.user.imageUrl">
+            <app-round-user-image [image]="userService.getPhotoUrl()"></app-round-user-image>
+        </div>
+
+        <div class="userImage" *ngIf="!userService.user.imageUrl">
+            <app-round-user-initials [firstName]="userService.user.firstName" [lastName]="userService.user.lastName"></app-round-user-initials>
+        </div>
+        <div class="userFullName">
+            <p>
+                {{userService.user.firstName}} {{userService.user.lastName}}
+            </p>
+        </div>
+
+        <div class="dropdown menubutton">
+            <button class="btn btn-secondary bg-transparent border border-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <button class="dropdown-item" (click)="logOut()" >Log Out</button>
+            </div>
+          </div>
+    </div>
+
     <div class="logged-accounts"></div>
         <div class="register-link-wrapper">
             <a routerLink="register">    

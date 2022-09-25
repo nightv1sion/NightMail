@@ -1,0 +1,17 @@
+.user-initials p {
+    margin: 0;
+    padding: 0;
+    color: #071165;
+    font-size: 48px;
+    text-align: center;
+}
+
+.user-initials {
+    border: 1px white solid;
+    border-radius: 45px;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

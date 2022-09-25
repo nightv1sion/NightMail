@@ -1,0 +1,13 @@
+.link, .link-disabled {
+    color: white;
+    border: 1px white solid;
+    border-radius: 50px;
+    width: 100%;
+    text-align: center;
+}
+
+.button, .disabledButton {
+    width: 40%;
+    margin: auto;
+    margin-top: 4%;
+}

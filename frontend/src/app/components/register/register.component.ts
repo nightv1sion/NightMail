@@ -18,14 +18,14 @@ export class RegisterComponent implements OnInit {
 
   user: UserForRegistrationDto = new UserForRegistrationDto();
 
-  constructor(private authentication: AuthenticationService, private router: Router, private userService: UserService) {
-    userService.tempUser.firstName = "SOMMMM";
-   }
+  constructor(private authentication: AuthenticationService, private router: Router) {
+    this.onSubmit = this.onSubmit.bind(this);  
+  }
 
   ngOnInit(): void {
   } 
 
-  onSubmit(){
+  onSubmit(): boolean{
     this.authentication.registerUser(this.user).subscribe(
       {next: (data) => {console.log("all is done"); console.log(data); this.router.navigate(['login'])},
       error: error => { 
@@ -34,9 +34,8 @@ export class RegisterComponent implements OnInit {
         else
           this.errorMessage = "Something went wrong when posting to the server";
         }}
-    );
-
-
+    )
+      
     return false;
   }
 

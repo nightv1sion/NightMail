@@ -1,0 +1,15 @@
+<div class="button" *ngIf="onSubmit">
+    <a href="#" (click)="onSubmit()" #loginButton >    
+        <div class="link">
+            {{textButton}}
+        </div>
+    </a>
+</div>  
+
+<div class="disabledButton" *ngIf="!onSubmit">
+    <a>
+        <div class="link-disabled">
+            {{textButton}}
+        </div>
+    </a>
+</div>
