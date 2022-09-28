@@ -1,0 +1,9 @@
+.editUserInfo {
+    background-color: #585858;
+    width: 23%;
+    margin: auto;
+    height: fit-content;
+    box-shadow: 1px 1px 4px #585858;
+    border-radius: 10px;
+    padding-top: 0.3%;
+}

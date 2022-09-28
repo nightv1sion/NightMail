@@ -19,6 +19,8 @@ import { DisabledBorderedButtonComponent } from './components/disabled-bordered-
 import { ErrorMessageComponent } from './components/error-message/error-message.component';
 import { RoundUserImageComponent } from './components/round-user-image/round-user-image.component';
 import { RoundUserInitialsComponent } from './components/round-user-initials/round-user-initials.component';
+import { PasswordConfirmationComponent } from './components/password-confirmation/password-confirmation.component';
+import { EditUserInfoComponent } from './components/edit-user-info/edit-user-info.component';
 
 export function tokenGetter(){
   return localStorage.getItem("JwtToken");
@@ -38,6 +40,8 @@ export function tokenGetter(){
     ErrorMessageComponent,
     RoundUserImageComponent,
     RoundUserInitialsComponent,
+    PasswordConfirmationComponent,
+    EditUserInfoComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,10 @@
+<div class="editUserInfo">
+    <div class="user-image">
+        <div class="userImage" *ngIf="userImage">
+            <app-round-user-image [image]="userImage"></app-round-user-image>
+        </div>
+        <div class="userImage" *ngIf="!userImage">
+            <app-round-user-initials [firstName]="user?.firstName" [lastName]="user?.lastName"></app-round-user-initials>
+        </div>
+    </div>
+</div>

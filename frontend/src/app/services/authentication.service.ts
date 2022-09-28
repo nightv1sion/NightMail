@@ -20,18 +20,23 @@ export class AuthenticationService {
     return this.http.post(this.authUrl + "/register", user);
   }
 
-  loginUser(user: UserForLogin, errorHandler: (error: any) => void){
+  isAuthenticated(){
+    console.log(this.getToken() != null ? true : false);
+    return this.getToken() != null ? true : false;
+  }
+
+  loginUser(user: UserForLogin, errorHandler: (error: any) => void, nextHandler:() => void){
     const userService = this.injector.get(UserService);
     return this.http.post(this.authUrl + "/login", user).subscribe({
-      next: (data:any) => {console.log(data); this.setToken(data); userService.setUser()},
+      next: (data:any) => {console.log(data); this.setToken(data); nextHandler()},
       error: errorHandler
     });
   }
 
   logOutUser(){
     this.deleteToken();
-    let userService = this.injector.get(UserService);
-    userService.removeUser();
+    // let userService = this.injector.get(UserService);
+    // userService.notifyAboutChange();
   }
 
   getToken() : any{

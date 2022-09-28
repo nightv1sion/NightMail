@@ -19,7 +19,9 @@ export class RegisterComponent implements OnInit {
   user: UserForRegistrationDto = new UserForRegistrationDto();
 
   constructor(private authentication: AuthenticationService, private router: Router) {
-    this.onSubmit = this.onSubmit.bind(this);  
+    this.onSubmit = this.onSubmit.bind(this);
+    if(authentication.isAuthenticated())
+      router.navigate([""]);
   }
 
   ngOnInit(): void {
@@ -44,10 +46,6 @@ export class RegisterComponent implements OnInit {
       return false;
 
     return true;
-  }
-
-  buttonIsDisabled(){
-
   }
 
   birthdayIsValid(){

@@ -1,4 +1,4 @@
-<div class="auth-register" (keyup.enter)="onSubmit()">
+<div class="auth-register" (keyup.enter)="firstName.valid && lastName.valid && email.valid && password.valid && matchingPassword(password, confirmPassword) ? onSubmit() : null">
     <app-error-message *ngIf="errorMessage" [errorMessage]="errorMessage"></app-error-message>    
         <div class="labelandinput">
             <div class="label">

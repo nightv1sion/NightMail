@@ -3,13 +3,13 @@
         <a routerLink="">NightMail</a>
     </div>
 
-    <div *ngIf="userService.user" class="add-account-button-wrapper">
+    <div *ngIf="user" class="add-account-button-wrapper">
             <a [routerLink]="'/'">
-                <div class="userImage" *ngIf="userService.user.imageUrl">
-                    <app-round-user-image [image]="userService.getPhotoUrl()"></app-round-user-image>
+                <div class="userImage" *ngIf="userImage">
+                    <app-round-user-image [image]="userImage"></app-round-user-image>
                 </div>
-                <div class="userImage" *ngIf="!userService.user.imageUrl">
-                    <app-round-user-initials [firstName]="userService.user.firstName" [lastName]="userService.user.lastName"></app-round-user-initials>
+                <div class="userImage" *ngIf="!userImage">
+                    <app-round-user-initials [firstName]="user.firstName" [lastName]="user.lastName"></app-round-user-initials>
                 </div>
             </a>
     
@@ -17,7 +17,7 @@
             <a [routerLink]="'/'">
                 <div class="userFullName">
                     <p>
-                        {{userService.user.firstName}}
+                        {{user.firstName}}
                     </p>
                 </div>
             </a>

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { SafeUrl } from '@angular/platform-browser';
+import { User } from 'src/app/data/models/User';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { ImageService } from 'src/app/services/image.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -9,15 +12,33 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserManagementComponent implements OnInit {
 
-  constructor(public userService: UserService, private authService: AuthenticationService) { }
+  user?: User;
+
+  userImage?: SafeUrl;
+
+  constructor(public userService: UserService, private authService: AuthenticationService, private imageService: ImageService) {
+  }
 
   logOut(){
     console.log("logOut");
     this.authService.logOutUser();
+    this.user = undefined;
+    this.userImage = undefined;
+    this.userService.notifyAboutChange();
     return false;
   }
 
   ngOnInit(): void {
+    if(this.authService.isAuthenticated())
+      {
+        this.userService.getUser({
+          nextHandler: (data: any) => 
+            {this.user = data; 
+              this.userService.getPhotoForUser().subscribe(data => this.userImage = this.imageService.getPhotoUrl(data)); this.userService.notifyAboutChange();}, 
+          errorHandler: (err: any) => {
+            this.logOut();
+          }});
+      }
   }
 
 }

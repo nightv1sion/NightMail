@@ -11,13 +11,7 @@ export class AuthenticationComponent implements OnInit {
 
   constructor(public userService: UserService) { 
   }
-
-  printUser(){
-    console.log(this.userService.user);
-  }
-
   
-
   ngOnInit(): void {
   }
 
