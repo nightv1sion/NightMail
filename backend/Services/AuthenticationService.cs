@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Contracts;
 using Entities.ExceptionModels;
 using Entities.Models;
 using Microsoft.AspNetCore.Identity;
@@ -23,13 +24,25 @@ namespace Services
         private readonly UserManager<User> _userManager;
         private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
+        private readonly IRepositoryManager _repository;
 
-        public AuthenticationService(UserManager<User> userManager, IMapper mapper, IConfiguration configuration)
+        public AuthenticationService(UserManager<User> userManager, IMapper mapper, IConfiguration configuration, IRepositoryManager repository)
         {
             _userManager = userManager;
             _mapper = mapper;
             _configuration = configuration;
+            _repository = repository;
         }
+
+        public async Task<bool> ConfirmPasswordAsync(Guid id, string password)
+        {
+            var user = _repository.UserRepository.GetUserById(id, false);
+            if (user == null)
+                throw new UserNotFoundException(id);
+
+            return await _userManager.CheckPasswordAsync(user, password);
+        }
+
         public async Task<IdentityResult> RegisterUserAsync(UserForRegistrationDTO userDto)
         {
             var user = await _userManager.FindByEmailAsync(userDto.Email);

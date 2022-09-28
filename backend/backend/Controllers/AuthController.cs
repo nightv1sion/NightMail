@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Services.Contracts;
@@ -65,5 +66,17 @@ namespace backend.Controllers
 
             return NoContent();
         }
+        [Authorize]
+        [HttpPost("confirm-user")]
+        public async Task<IActionResult> CheckPassword(string password)
+        {
+            Guid userId = Guid.Parse(User.Claims.FirstOrDefault(c => c.Type == "UserId").Value);
+
+            bool result = await _serviceManager.AuthenticationService.ConfirmPasswordAsync(userId, password);
+            if (result)
+                return Ok();
+            else
+                return Unauthorized();
+        } 
     }
 }

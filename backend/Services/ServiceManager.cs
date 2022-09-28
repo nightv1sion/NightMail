@@ -20,7 +20,7 @@ namespace Services
         private Lazy<IUserProfileImageService> _userImageService;
         public ServiceManager(UserManager<User> userManager, IMapper mapper, IConfiguration configuration, IRepositoryManager repository)
         {
-            _authentication = new Lazy<IAuthenticationService>(new AuthenticationService(userManager, mapper, configuration));
+            _authentication = new Lazy<IAuthenticationService>(new AuthenticationService(userManager, mapper, configuration, repository));
             _userService = new Lazy<IUserService>(new UserService(repository, mapper));
             _userImageService = new Lazy<IUserProfileImageService>(new UserProfileImageService(repository));
         }

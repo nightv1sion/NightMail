@@ -15,5 +15,6 @@ namespace Services.Contracts
         Task RevokeUserAsync(string username);
         Task RevokeAllAsync();
         Task<TokenDTO> RefreshTokenAsync(TokenDTO token);
+        Task<bool> ConfirmPasswordAsync(Guid id, string password);
     }
 }
