@@ -68,7 +68,7 @@ namespace backend.Controllers
         }
         [Authorize]
         [HttpPost("confirm-user")]
-        public async Task<IActionResult> CheckPassword(string password)
+        public async Task<IActionResult> CheckPassword([FromBody]string password)
         {
             Guid userId = Guid.Parse(User.Claims.FirstOrDefault(c => c.Type == "UserId").Value);
 

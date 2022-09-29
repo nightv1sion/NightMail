@@ -21,13 +21,13 @@ namespace Services
             _repository = repository;
             _mapper = mapper;
         }
-        public UserDTO GetUserById(Guid id, bool trackChanges)
+        public T GetUserById<T>(Guid id, bool trackChanges)
         {
             var user = _repository.UserRepository.GetUserById(id, trackChanges);
             if (user == null)
                 throw new UserNotFoundException(id);
 
-            var userDto = _mapper.Map<UserDTO>(user);
+            var userDto = _mapper.Map<T>(user);
 
             return userDto;
         }

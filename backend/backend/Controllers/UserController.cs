@@ -21,7 +21,15 @@ namespace backend.Controllers
         public async Task<ActionResult> GetUser()
         {
             Guid userId = Guid.Parse(User.Claims.FirstOrDefault(claim => claim.Type == "UserId").Value);
-            var user = _service.UserService.GetUserById(userId, false);
+            var user = _service.UserService.GetUserById<UserDTO>(userId, false);
+            return Ok(user);
+        }
+
+        [HttpGet("for-edit")]
+        public async Task<ActionResult> GetUserForEdit()
+        {
+            Guid userId = Guid.Parse(User.Claims.FirstOrDefault(claim => claim.Type == "UserId").Value);
+            var user = _service.UserService.GetUserById<UserForEditDTO>(userId, false);
             return Ok(user);
         }
 

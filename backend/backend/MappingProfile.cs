@@ -17,6 +17,7 @@ namespace backend
 
             CreateMap<User, UserDTO>();
 
+            CreateMap<User, UserForEditDTO>().ReverseMap();
             /*CreateMap<User, UserDTO>()
                 .ForMember(entity => entity.Image, opts => opts.MapFrom(dto => dto.UserProfileImage.ToIFormFile()));*/
         }
