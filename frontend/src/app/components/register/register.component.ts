@@ -24,6 +24,10 @@ export class RegisterComponent implements OnInit {
       router.navigate([""]);
   }
 
+  clearErrorMessage(){
+  this.errorMessage = "";
+  }
+
   ngOnInit(): void {
   } 
 

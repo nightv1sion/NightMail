@@ -21,9 +21,20 @@ export class UserService {
 
   getUser(handlers: RequestHandlers){
     return this.http.get(environment.apiUrl + "/user").subscribe({
-      next: (data) => {if(handlers.nextHandler) handlers.nextHandler(data)},
-      error: (error) => {if(handlers.errorHandler) handlers.errorHandler(error); this.authService.logOutUser();}
+      next: (data) => {if(handlers.nextHandler) handlers.nextHandler(data); console.log(data);},
+      error: (error) => {if(handlers.errorHandler) 
+        handlers.errorHandler(error); 
+        this.authService.logOutUser(); 
+        this.userConfirmation = false;}
     });
+  }
+
+  getUserForEdit(handlers: RequestHandlers){
+    return this.http.get(environment.apiUrl + "/user/for-edit").subscribe({
+      next: (data) => {if(handlers.nextHandler) handlers.nextHandler(data);},
+      error: (error) => {if(handlers.errorHandler) 
+        handlers.errorHandler(error);
+    }});
   }
 
   getPhotoForUser(){
@@ -34,9 +45,9 @@ export class UserService {
    }
 
    confirmUserPassword(password: string, handlers: RequestHandlers){
-    return this.http.post(environment.apiUrl + "/Auth/confirm-user", password).subscribe({
+    return this.http.post(environment.apiUrl + "/Auth/confirm-user",JSON.stringify(password), { headers: { "Content-Type": "application/json"}}).subscribe({
       next: (data) => {if(handlers.nextHandler) handlers.nextHandler(data); this.userConfirmation = true;},
-      error: (data) => {if(handlers.errorHandler) handlers.errorHandler(data); this.userConfirmation = false;}
+      error: (data) => {if(handlers.errorHandler) handlers.errorHandler(data); console.log(data); this.userConfirmation = false;}
    });
    }
 }

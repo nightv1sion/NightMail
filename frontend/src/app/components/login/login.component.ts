@@ -23,7 +23,9 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  
+  clearErrorMessage(){
+    this.errorMessage = "";
+  }
 
   onSubmit(){
     this.authentication.loginUser(this.user, (error) => 

@@ -21,7 +21,7 @@ export class PasswordConfirmationComponent implements OnInit {
   password: string = "";
 
   constructor(private userService: UserService, private router: Router, private imageService: ImageService) {
-      
+      this.onSubmit = this.onSubmit.bind(this);
    }
 
   ngOnInit(): void {
@@ -32,8 +32,14 @@ export class PasswordConfirmationComponent implements OnInit {
   }
 
   onSubmit(){
-    this.userService.confirmUserPassword(this.password, {nextHandler: (data: any) => this.router.navigate(["/user/edit"]), errorHandler: (data: any) => this.errorMessage = "Password is wrong"});
+    this.userService.confirmUserPassword(this.password, {nextHandler: (data: any) => this.router.navigate(["/user/edit"]), 
+    errorHandler: (data: any) => {
+      if(data.status == 401) 
+        this.errorMessage = "Password is wrong"; 
+      else if(data.status == 404) 
+        this.errorMessage = "Something went wrong when posting to the server";}});
     return false;
   }
+
 
 }

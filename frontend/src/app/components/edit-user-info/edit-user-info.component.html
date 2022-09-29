@@ -3,8 +3,53 @@
         <div class="userImage" *ngIf="userImage">
             <app-round-user-image [image]="userImage"></app-round-user-image>
         </div>
+
         <div class="userImage" *ngIf="!userImage">
             <app-round-user-initials [firstName]="user?.firstName" [lastName]="user?.lastName"></app-round-user-initials>
         </div>
+
+        <div class="new-image-input">
+            <input type="file" class="form-control form-control-sm" (change)="changeImage(newImage)" #newImage/>
+        </div>
+    </div>
+
+    <div class="labelandinput">
+        <div class="label">
+
+            <label for="firstname" [class]="{'not-valid': !firstName.pristine && !firstName.valid}">
+                First Name <span [hidden]="firstName.valid || firstName.pristine">is not valid (first letter must be uppercase)</span>
+            </label>
+            
+        </div>
+        <div class="input">
+            <input [class]="{'not-valid-input': !firstName.pristine && !firstName.valid}" id="firstname" [(ngModel)]="userForEdit!.firstName"  #firstName="ngModel" pattern="^[A-Z][a-z]+$" required/>
+        </div>
+    </div>
+    
+    <div class="labelandinput">
+        <div class="label">
+            <label for="lastname" [class]="{'not-valid': !lastName.pristine && !lastName.valid}">
+                Last Name <span [hidden]="lastName.valid || lastName.pristine">is not valid (first letter must be uppercase)</span>
+            </label>
+        </div>
+        <div class="input">
+            <input [class]="{'not-valid-input': !lastName.pristine && !lastName.valid}" id="lastname" [(ngModel)]="userForEdit!.lastName" pattern="^[A-Z][a-z]+$" #lastName="ngModel" required/>
+        </div>
+    </div>
+
+    <div class="labelandinput">
+        <div class="label">
+            <label for="birthday" [class]="{'not-valid': !birthday.pristine && (!birthday.valid || !birthdayIsValid())}">
+                Birthday <span [hidden]="birthday.valid || birthday.pristine">is required</span>
+            </label>
+        </div>
+        <div class="input">
+            <input [class]="{'not-valid-input': !birthday.pristine && !birthdayIsValid()}" type="date" id="birthday" [(ngModel)]="userForEdit!.birthday" required #birthday="ngModel" [value]="userForEdit?.birthday"/>
+        </div>
+    </div>
+
+    <div class="save-button">
+        <app-bordered-button  (click)="onSubmit(newImage)" [textButton]="'Save'" *ngIf="firstName.valid && lastName.valid && birthdayIsValid() && birthday.valid"></app-bordered-button>
+        <app-disabled-bordered-button [textButton]="'Save'" *ngIf="firstName.invalid || lastName.invalid || !birthdayIsValid() || birthday.invalid"></app-disabled-bordered-button>
     </div>
 </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SafeUrl } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { User } from 'src/app/data/models/User';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ImageService } from 'src/app/services/image.service';
@@ -16,7 +17,7 @@ export class UserManagementComponent implements OnInit {
 
   userImage?: SafeUrl;
 
-  constructor(public userService: UserService, private authService: AuthenticationService, private imageService: ImageService) {
+  constructor(public userService: UserService, private authService: AuthenticationService, private imageService: ImageService, private router: Router) {
   }
 
   logOut(){
@@ -26,6 +27,10 @@ export class UserManagementComponent implements OnInit {
     this.userImage = undefined;
     this.userService.notifyAboutChange();
     return false;
+  }
+
+  goToEditProfile(){
+    this.router.navigate(["user/edit"])
   }
 
   ngOnInit(): void {

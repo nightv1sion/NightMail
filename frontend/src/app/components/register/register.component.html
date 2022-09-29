@@ -9,7 +9,7 @@
                 
             </div>
             <div class="input">
-                <input [class]="{'not-valid-input': !firstName.pristine && !firstName.valid}" id="firstname" [(ngModel)]="user.firstName" required #firstName="ngModel" pattern="^[A-Z][a-z]+$"/>
+                <input (input)="clearErrorMessage()" [class]="{'not-valid-input': !firstName.pristine && !firstName.valid}" id="firstname" [(ngModel)]="user.firstName" required #firstName="ngModel" pattern="^[A-Z][a-z]+$"/>
             </div>
         </div>
         
@@ -20,7 +20,7 @@
                 </label>
             </div>
             <div class="input">
-                <input [class]="{'not-valid-input': !lastName.pristine && !lastName.valid}" id="lastname" [(ngModel)]="user.lastName" pattern="^[A-Z][a-z]+$" #lastName="ngModel"/>
+                <input (input)="clearErrorMessage()" [class]="{'not-valid-input': !lastName.pristine && !lastName.valid}" id="lastname" [(ngModel)]="user.lastName" pattern="^[A-Z][a-z]+$" #lastName="ngModel"/>
             </div>
         </div>
 
@@ -31,7 +31,7 @@
                 </label>
             </div>
             <div class="input">
-                <input [class]="{'not-valid-input': !birthday.pristine && !birthdayIsValid()}" type="date" id="birthday" [(ngModel)]="user.birthday" required #birthday="ngModel"/>
+                <input (input)="clearErrorMessage()" [class]="{'not-valid-input': !birthday.pristine && !birthdayIsValid()}" type="date" id="birthday" [(ngModel)]="user.birthday" required #birthday="ngModel"/>
             </div>
         </div>
         
@@ -42,7 +42,7 @@
                 </label>
             </div>
             <div class="input">
-                <input [class]="{'not-valid-input': !email.pristine && !email.valid}" id="email" [(ngModel)]="user.email" #email="ngModel" required pattern="^[0-9a-zA-Z]+@nightmail.com$"/>
+                <input (input)="clearErrorMessage()" [class]="{'not-valid-input': !email.pristine && !email.valid}" id="email" [(ngModel)]="user.email" #email="ngModel" required pattern="^[0-9a-zA-Z]+@nightmail.com$"/>
             </div>
         </div>
 
@@ -53,7 +53,7 @@
                 </label>
             </div>
             <div class="input">
-                <input type="password" [class]="{'not-valid-input': !password.pristine && !password.valid}" id="password" [(ngModel)]="user.password" #password="ngModel" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"/>
+                <input (input)="clearErrorMessage()" type="password" [class]="{'not-valid-input': !password.pristine && !password.valid}" id="password" [(ngModel)]="user.password" #password="ngModel" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"/>
             </div>
         </div>
 
@@ -64,12 +64,12 @@
                 </label>
             </div>
             <div class="input">
-                <input type="password" [class]="{'not-valid-input': !confirmPassword.pristine && !matchingPassword(password, confirmPassword)}" id="confirmPassword" [(ngModel)]="user.confirmPassword" #confirmPassword="ngModel"/>
+                <input (input)="clearErrorMessage()" type="password" [class]="{'not-valid-input': !confirmPassword.pristine && !matchingPassword(password, confirmPassword)}" id="confirmPassword" [(ngModel)]="user.confirmPassword" #confirmPassword="ngModel"/>
             </div>
         </div>
 
-        <app-bordered-button [onSubmit]="onSubmit" [textButton]="'Register'" *ngIf="firstName.valid && lastName.valid && email.valid && password.valid && matchingPassword(password, confirmPassword)"></app-bordered-button>
-        <app-disabled-bordered-button [textButton]="'Register'" *ngIf="firstName.invalid || lastName.invalid || email.invalid || password.invalid || !matchingPassword(password, confirmPassword)"></app-disabled-bordered-button>
+        <app-bordered-button [onSubmit]="onSubmit" [textButton]="'Register'" *ngIf="firstName.valid && lastName.valid && email.valid && password.valid && matchingPassword(password, confirmPassword) && birthdayIsValid() && birthday.valid"></app-bordered-button>
+        <app-disabled-bordered-button [textButton]="'Register'" *ngIf="firstName.invalid || lastName.invalid || email.invalid || password.invalid || !matchingPassword(password, confirmPassword) || !birthdayIsValid() || birthday.invalid"></app-disabled-bordered-button>
 
-    <app-blue-link [routerLink]="'/login'" [textLink]="'Have an Account?'"></app-blue-link>
+    <app-blue-link [routerLink]="'/login'" [textLink]="'Have     an Account?'"></app-blue-link>
 </div>
