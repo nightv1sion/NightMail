@@ -10,5 +10,7 @@ namespace Contracts
     public interface IUserProfileImageRepository
     {
         UserProfileImage GetImageByUserId(Guid userId, bool trackChanges);
+        void CreateImageForUser(UserProfileImage entity);
+        void DeleteImageForUser(UserProfileImage entity);
     }
 }

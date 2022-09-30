@@ -16,5 +16,9 @@ namespace Repository
 
         public UserProfileImage GetImageByUserId(Guid userId, bool trackChanges) => FindByCondition(img => img.UserId == userId, trackChanges)
             .FirstOrDefault();
+
+        public void CreateImageForUser(UserProfileImage entity) => Create(entity);
+
+        public void DeleteImageForUser(UserProfileImage entity) => Delete(entity);
     }
 }

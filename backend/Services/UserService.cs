@@ -32,11 +32,11 @@ namespace Services
             return userDto;
         }
 
-        public async Task UpdateUserAsync(UserForUpdateDTO userDto)
+        public async Task UpdateUserAsync(Guid userId, UserForUpdateDTO userDto)
         {
-            var userEntity = _repository.UserRepository.GetUserById(userDto.Id, true);
+            var userEntity = _repository.UserRepository.GetUserById(userId, true);
             if(userEntity == null)
-                throw new UserNotFoundException(userDto.Id);
+                throw new UserNotFoundException(userId);
 
             _mapper.Map(userDto, userEntity);
             await _repository.SaveAsync();

@@ -10,6 +10,7 @@ namespace Services.Contracts
     public interface IUserService
     {
         T GetUserById<T>(Guid id, bool trackChanges);
-        Task UpdateUserAsync(UserForUpdateDTO userDto);
+        Task UpdateUserAsync(Guid userId, UserForUpdateDTO userDto);
+
     }
 }

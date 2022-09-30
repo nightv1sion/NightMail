@@ -20,7 +20,7 @@ namespace backend.Controllers
         [HttpGet]
         public async Task<ActionResult> GetUser()
         {
-            Guid userId = Guid.Parse(User.Claims.FirstOrDefault(claim => claim.Type == "UserId").Value);
+            Guid userId = GetCurrentUserId();
             var user = _service.UserService.GetUserById<UserDTO>(userId, false);
             return Ok(user);
         }
@@ -28,17 +28,23 @@ namespace backend.Controllers
         [HttpGet("for-edit")]
         public async Task<ActionResult> GetUserForEdit()
         {
-            Guid userId = Guid.Parse(User.Claims.FirstOrDefault(claim => claim.Type == "UserId").Value);
-            var user = _service.UserService.GetUserById<UserForEditDTO>(userId, false);
+            Guid userId = GetCurrentUserId();
+            var user = _service.UserService.GetUserById<UserForUpdateDTO>(userId, false);
             return Ok(user);
         }
 
         [HttpPut]
-        public async Task<ActionResult> UpdateUser([FromForm]UserForUpdateDTO userFromForm)
+        public async Task<ActionResult> UpdateUser(UserForUpdateDTO userDto)
         {
-            await _service.UserService.UpdateUserAsync(userFromForm);
+            Guid userId = GetCurrentUserId();
+            await _service.UserService.UpdateUserAsync(userId, userDto);
 
             return Ok();
+        }
+
+        private Guid GetCurrentUserId()
+        {
+            return Guid.Parse(User.Claims.FirstOrDefault(claim => claim.Type == "UserId").Value);
         }
     }
 }

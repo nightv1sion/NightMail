@@ -20,12 +20,35 @@ namespace backend.Controllers
         [HttpGet("user")]
         public async Task<ActionResult> GetImageForUser()
         {
-            Guid userId = Guid.Parse(User.Claims.FirstOrDefault(claim => claim.Type == "UserId").Value);
+            Guid userId = GetCurrentUserId();
             
             var img = _service.UserProfileImageService.GetImageByUserId(userId, false);
             
             return File(img.ImageData, "application/octet-stream", img.ImageName);
         }
+        [HttpPost("user")]
+        public async Task<ActionResult> PostImageForUser([FromForm]IFormFile image)
+        {
+            Guid userId = GetCurrentUserId();
 
+            await _service.UserProfileImageService.CreateImageForUserAsync(userId, image);
+            return Ok();
+
+        }
+
+        [HttpDelete("user")]
+        public async Task<ActionResult> DeleteImageForUser()
+        {
+            Guid userId = GetCurrentUserId();
+
+            await _service.UserProfileImageService.DeleteImageForUserAsync(userId);
+            return Ok();
+        }
+
+        private Guid GetCurrentUserId()
+        {
+            return Guid.Parse(User.Claims.FirstOrDefault(claim => claim.Type == "UserId").Value);
+
+        }
     }
 }

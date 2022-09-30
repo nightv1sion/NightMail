@@ -11,7 +11,7 @@ namespace Shared.Helpers
 {
     public static class ImageConverter
     {
-        public static UserProfileImage ToUserProfileImage(this IFormFile formFile, UserForUpdateDTO userDto)
+        /*public static UserProfileImage ToUserProfileImage(this IFormFile formFile, UserForUpdateDTO userDto)
         {
             UserProfileImage image = new UserProfileImage() { ImageName = formFile.FileName, UserId = userDto.Id};
             using var memoryStream = new MemoryStream();
@@ -21,7 +21,7 @@ namespace Shared.Helpers
 
             return image;
         }
-
+*/
         public static IFormFile ToIFormFile(this UserProfileImage image)
         {
             var memoryStream = new MemoryStream(image.ImageData);
