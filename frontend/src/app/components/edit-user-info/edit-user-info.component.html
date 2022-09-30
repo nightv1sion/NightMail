@@ -9,6 +9,7 @@
         </div>
 
         <div class="new-image-input">
+            <button class="btn btn-outline-danger deleteImage" (click)="deleteImage()" *ngIf="userImage">Delete image</button>
             <input type="file" class="form-control form-control-sm" (change)="changeImage(newImage)" #newImage/>
         </div>
     </div>
@@ -39,17 +40,17 @@
 
     <div class="labelandinput">
         <div class="label">
-            <label for="birthday" [class]="{'not-valid': !birthday.pristine && (!birthday.valid || !birthdayIsValid())}">
-                Birthday <span [hidden]="birthday.valid || birthday.pristine">is required</span>
+            <label for="birthday" [class]="{'not-valid': !birthdayIsValid()}">
+                Birthday <span [hidden]="birthdayIsValid()">is required</span>
             </label>
         </div>
         <div class="input">
-            <input [class]="{'not-valid-input': !birthday.pristine && !birthdayIsValid()}" type="date" id="birthday" [(ngModel)]="userForEdit!.birthday" required #birthday="ngModel" [value]="userForEdit?.birthday"/>
+            <input [class]="{'not-valid-input': !birthdayIsValid()}" [value]="dateForInput()" type="date" id="birthday" [value]="dateForInput()"  #birthday (change)="changeBirthday(birthday)"/>
         </div>
     </div>
 
     <div class="save-button">
-        <app-bordered-button  (click)="onSubmit(newImage)" [textButton]="'Save'" *ngIf="firstName.valid && lastName.valid && birthdayIsValid() && birthday.valid"></app-bordered-button>
-        <app-disabled-bordered-button [textButton]="'Save'" *ngIf="firstName.invalid || lastName.invalid || !birthdayIsValid() || birthday.invalid"></app-disabled-bordered-button>
+        <app-bordered-button (click)="onSubmit(newImage)" [textButton]="'Save'" *ngIf="firstName.valid && lastName.valid && birthdayIsValid()"></app-bordered-button>
+        <app-disabled-bordered-button [textButton]="'Save'" *ngIf="firstName.invalid || lastName.invalid || !birthdayIsValid()"></app-disabled-bordered-button>
     </div>
 </div>

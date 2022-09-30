@@ -15,7 +15,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   notifierSubscription: Subscription = this.userService.subjectNotifier.subscribe(() => {
     this.userService.getUser({
-      nextHandler: (data: any) => {this.user = data; this.userService.getPhotoForUser().subscribe({next: (data: any) => this.userImage = this.imageService.getPhotoUrl(data)})},
+      nextHandler: (data: any) => {this.user = data; this.userService.getPhotoForUser().subscribe({next: (data: any) => this.userImage = this.imageService.getPhotoUrl(data), 
+        error: () => {this.userImage = undefined;}})},
       errorHandler: (err: any) => {
         this.user = undefined;
       }
