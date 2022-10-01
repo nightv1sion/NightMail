@@ -32,6 +32,7 @@ namespace backend.Controllers
                 }
                 return BadRequest(ModelState);
             }
+
             return Ok();
         }
         [HttpPost("login")]

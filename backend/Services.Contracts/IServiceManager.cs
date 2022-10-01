@@ -11,5 +11,8 @@ namespace Services.Contracts
         IAuthenticationService AuthenticationService { get; }
         IUserService UserService { get; }
         IUserProfileImageService UserProfileImageService { get; }
+        IFolderService FolderService { get;  }
+        IMailFolderService MailFolderService { get; }
+        IMailService MailService { get; }
     }
 }

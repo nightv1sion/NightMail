@@ -11,5 +11,7 @@ namespace Contracts
     {
         User GetUserById(Guid id, bool trackChanges);
         void UpdateUser(User user);
+        User GetUserByEmail(string email, bool trackChanges);
+
     }
 }

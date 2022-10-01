@@ -23,7 +23,7 @@ namespace Services
         }
         public T GetUserById<T>(Guid id, bool trackChanges)
         {
-            var user = _repository.UserRepository.GetUserById(id, trackChanges);
+            var user = _repository.User.GetUserById(id, trackChanges);
             if (user == null)
                 throw new UserNotFoundException(id);
 
@@ -34,7 +34,7 @@ namespace Services
 
         public async Task UpdateUserAsync(Guid userId, UserForUpdateDTO userDto)
         {
-            var userEntity = _repository.UserRepository.GetUserById(userId, true);
+            var userEntity = _repository.User.GetUserById(userId, true);
             if(userEntity == null)
                 throw new UserNotFoundException(userId);
 

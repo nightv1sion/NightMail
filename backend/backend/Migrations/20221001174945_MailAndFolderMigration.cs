@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace backend.Migrations
 {
-    public partial class UserGuid : Migration
+    public partial class MailAndFolderMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -160,6 +160,51 @@ namespace backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Folders",
+                columns: table => new
+                {
+                    FolderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Folders", x => x.FolderId);
+                    table.ForeignKey(
+                        name: "FK_Folders_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Mails",
+                columns: table => new
+                {
+                    MailId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Subject = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Text = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    SenderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ReceiverId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Mails", x => x.MailId);
+                    table.ForeignKey(
+                        name: "FK_Mails_AspNetUsers_ReceiverId",
+                        column: x => x.ReceiverId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Mails_AspNetUsers_SenderId",
+                        column: x => x.SenderId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "UserProfileImages",
                 columns: table => new
                 {
@@ -176,6 +221,30 @@ namespace backend.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MailFolders",
+                columns: table => new
+                {
+                    MailId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FolderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MailFolders", x => new { x.MailId, x.FolderId });
+                    table.ForeignKey(
+                        name: "FK_MailFolders_Folders_FolderId",
+                        column: x => x.FolderId,
+                        principalTable: "Folders",
+                        principalColumn: "FolderId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_MailFolders_Mails_MailId",
+                        column: x => x.MailId,
+                        principalTable: "Mails",
+                        principalColumn: "MailId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -219,6 +288,26 @@ namespace backend.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Folders_UserId",
+                table: "Folders",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MailFolders_FolderId",
+                table: "MailFolders",
+                column: "FolderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Mails_ReceiverId",
+                table: "Mails",
+                column: "ReceiverId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Mails_SenderId",
+                table: "Mails",
+                column: "SenderId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UserProfileImages_UserId",
                 table: "UserProfileImages",
                 column: "UserId",
@@ -243,10 +332,19 @@ namespace backend.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "MailFolders");
+
+            migrationBuilder.DropTable(
                 name: "UserProfileImages");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Folders");
+
+            migrationBuilder.DropTable(
+                name: "Mails");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

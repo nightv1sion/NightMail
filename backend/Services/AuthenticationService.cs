@@ -21,22 +21,24 @@ namespace Services
 {
     public class AuthenticationService : IAuthenticationService
     {
+        private readonly IFolderService _folderService;
         private readonly UserManager<User> _userManager;
         private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
         private readonly IRepositoryManager _repository;
 
-        public AuthenticationService(UserManager<User> userManager, IMapper mapper, IConfiguration configuration, IRepositoryManager repository)
+        public AuthenticationService(IFolderService folderService, UserManager<User> userManager, IMapper mapper, IConfiguration configuration, IRepositoryManager repository)
         {
             _userManager = userManager;
             _mapper = mapper;
             _configuration = configuration;
             _repository = repository;
+            _folderService = folderService;
         }
 
         public async Task<bool> ConfirmPasswordAsync(Guid id, string password)
         {
-            var user = _repository.UserRepository.GetUserById(id, false);
+            var user = _repository.User.GetUserById(id, false);
             if (user == null)
                 throw new UserNotFoundException(id);
 
@@ -51,6 +53,10 @@ namespace Services
 
             User userEntity = _mapper.Map<User>(userDto);
             var status = await _userManager.CreateAsync(userEntity, userDto.Password);
+
+            var createdUser = await _userManager.FindByEmailAsync(userDto.Email);
+
+            await _folderService.CreateStandardFoldersForUserAsync(createdUser);
             return status;
         }
 

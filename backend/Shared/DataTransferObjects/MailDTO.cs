@@ -8,10 +8,9 @@ namespace Shared.DataTransferObjects
 {
     public record MailDTO
     {
-        public UserDTO Receiver { get; set; }
-        public UserDTO Sender { get; set; }
+        public string Text { get; set; }
         public string Subject { get; set; }
-        public string Topic { get; set; }
-        public DateTime DateTime { get; set; }
+        public string ReceiverMail { get; set; }
+        public DateTime CreationDateTime { get; set; }
     }
 }

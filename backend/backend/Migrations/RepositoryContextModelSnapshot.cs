@@ -22,6 +22,73 @@ namespace backend.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("Entities.Models.Folder", b =>
+                {
+                    b.Property<Guid>("FolderId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("FolderId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Folders");
+                });
+
+            modelBuilder.Entity("Entities.Models.Mail", b =>
+                {
+                    b.Property<Guid>("MailId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreationDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("ReceiverId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("SenderId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MailId");
+
+                    b.HasIndex("ReceiverId");
+
+                    b.HasIndex("SenderId");
+
+                    b.ToTable("Mails");
+                });
+
+            modelBuilder.Entity("Entities.Models.MailFolder", b =>
+                {
+                    b.Property<Guid>("MailId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("FolderId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("MailId", "FolderId");
+
+                    b.HasIndex("FolderId");
+
+                    b.ToTable("MailFolders");
+                });
+
             modelBuilder.Entity("Entities.Models.User", b =>
                 {
                     b.Property<Guid>("Id")
@@ -261,6 +328,55 @@ namespace backend.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Entities.Models.Folder", b =>
+                {
+                    b.HasOne("Entities.Models.User", "User")
+                        .WithMany("Folders")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Entities.Models.Mail", b =>
+                {
+                    b.HasOne("Entities.Models.User", "Receiver")
+                        .WithMany("ReceivedMails")
+                        .HasForeignKey("ReceiverId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Entities.Models.User", "Sender")
+                        .WithMany("SendedMails")
+                        .HasForeignKey("SenderId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Receiver");
+
+                    b.Navigation("Sender");
+                });
+
+            modelBuilder.Entity("Entities.Models.MailFolder", b =>
+                {
+                    b.HasOne("Entities.Models.Folder", "Folder")
+                        .WithMany("MailFolders")
+                        .HasForeignKey("FolderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.Models.Mail", "Mail")
+                        .WithMany("MailFolders")
+                        .HasForeignKey("MailId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Folder");
+
+                    b.Navigation("Mail");
+                });
+
             modelBuilder.Entity("Entities.Models.UserProfileImage", b =>
                 {
                     b.HasOne("Entities.Models.User", "User")
@@ -323,8 +439,24 @@ namespace backend.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Entities.Models.Folder", b =>
+                {
+                    b.Navigation("MailFolders");
+                });
+
+            modelBuilder.Entity("Entities.Models.Mail", b =>
+                {
+                    b.Navigation("MailFolders");
+                });
+
             modelBuilder.Entity("Entities.Models.User", b =>
                 {
+                    b.Navigation("Folders");
+
+                    b.Navigation("ReceivedMails");
+
+                    b.Navigation("SendedMails");
+
                     b.Navigation("UserProfileImage");
                 });
 #pragma warning restore 612, 618

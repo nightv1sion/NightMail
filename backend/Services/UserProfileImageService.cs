@@ -22,7 +22,7 @@ namespace Services
         {
             var user = GetUserAndCheckIfItExists(userId, trackChanges);
 
-            var img = _repository.UserProfileImageRepository.GetImageByUserId(userId, trackChanges);
+            var img = _repository.UserProfileImage.GetImageByUserId(userId, trackChanges);
 
             if (img == null)
                 throw new UserProfileImageNotFoundException(userId);
@@ -35,7 +35,7 @@ namespace Services
 
             var user = GetUserAndCheckIfItExists(userId, false);
 
-            var imgEntity = _repository.UserProfileImageRepository.GetImageByUserId(userId, false);
+            var imgEntity = _repository.UserProfileImage.GetImageByUserId(userId, false);
 
             if (imgEntity != null)
                 throw new ImageForUserExistsConflictException(userId);
@@ -48,7 +48,7 @@ namespace Services
                 newImage.ImageData = stream.ToArray();
             }
 
-            _repository.UserProfileImageRepository.CreateImageForUser(newImage);
+            _repository.UserProfileImage.CreateImageForUser(newImage);
             await _repository.SaveAsync();
         }
 
@@ -56,18 +56,18 @@ namespace Services
         {
             var user = GetUserAndCheckIfItExists(userId, false);
 
-            var image = _repository.UserProfileImageRepository.GetImageByUserId(userId, false);
+            var image = _repository.UserProfileImage.GetImageByUserId(userId, false);
             if (image == null)
                 throw new UserProfileImageNotFoundException(userId);
 
-            _repository.UserProfileImageRepository.DeleteImageForUser(image);
+            _repository.UserProfileImage.DeleteImageForUser(image);
 
             await _repository.SaveAsync();
         }
 
         private User GetUserAndCheckIfItExists(Guid userId, bool trackChanges)
         {
-            var user = _repository.UserRepository.GetUserById(userId, trackChanges);
+            var user = _repository.User.GetUserById(userId, trackChanges);
             if (user == null)
                 throw new UserNotFoundException(userId);
             

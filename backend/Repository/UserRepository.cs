@@ -13,7 +13,12 @@ namespace Repository
         public UserRepository(RepositoryContext context) : base(context)
         {
         }
-        public User GetUserById(Guid id, bool trackChanges) => FindByCondition(u => u.Id == id, trackChanges).FirstOrDefault();
+        public User GetUserById(Guid id, bool trackChanges) => 
+            FindByCondition(u => u.Id == id, trackChanges).FirstOrDefault();
+        public User GetUserByEmail(string email, bool trackChanges) => 
+            FindByCondition(u => u.Email == email, trackChanges).FirstOrDefault();
         public void UpdateUser(User user) => Update(user);
+
+        
     }
 }

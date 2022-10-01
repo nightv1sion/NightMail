@@ -15,5 +15,8 @@ namespace Entities.Models
         public string? RefreshToken { get; set; }
         public DateTime RefreshTokenExpiryTime { get; set; }
         public UserProfileImage? UserProfileImage { get; set; }
+        public List<Mail> ReceivedMails { get; set; }
+        public List<Mail> SendedMails { get; set; }
+        public List<Folder> Folders { get; set; }
     }
 }

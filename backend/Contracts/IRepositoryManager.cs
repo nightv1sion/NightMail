@@ -8,8 +8,11 @@ namespace Contracts
 {
     public interface IRepositoryManager
     {
-        IUserRepository UserRepository { get; }
-        IUserProfileImageRepository UserProfileImageRepository { get; }
+        IUserRepository User { get; }
+        IUserProfileImageRepository UserProfileImage { get; }
+        IMailRepository Mail { get; }
+        IFolderRepository Folder { get; } 
+        IMailFolderRepository MailFolder { get; }
         Task SaveAsync();
 
     }
