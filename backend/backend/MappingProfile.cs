@@ -28,6 +28,10 @@ namespace backend
             CreateMap<Mail, OutgoingMailDTO>()
                 .ForMember(dto => dto.ReceiverMail,
                 opts => opts.MapFrom(entity => entity.Receiver.Email));
+
+            CreateMap<Folder, FolderDTO>()
+                .ForMember(dto => dto.CountOfMails,
+                opts => opts.MapFrom(entity => entity.MailFolders.Count()));
         }
     }
 }

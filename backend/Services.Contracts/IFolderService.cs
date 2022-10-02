@@ -1,4 +1,5 @@
 ﻿using Entities.Models;
+using Shared.DataTransferObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,6 @@ namespace Services.Contracts
     public interface IFolderService
     {
         Task CreateStandardFoldersForUserAsync(User user);
-
+        Task<List<FolderDTO>> GetFoldersForUserAsync(Guid userId, bool trackChanges);
     }
 }

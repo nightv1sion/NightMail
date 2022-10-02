@@ -44,6 +44,12 @@ namespace backend.Controllers
 
             return Ok(mails);
         }
+        /*[HttpGet("{folderId}")]
+        public async Task<ActionResult> GetMailsFromCreatedFolder(Guid folderId)
+        {
+            Guid userId = GetUserId();
+            
+        }*/
 
         private Guid GetUserId()
         {

@@ -54,9 +54,6 @@ namespace Services
             User userEntity = _mapper.Map<User>(userDto);
             var status = await _userManager.CreateAsync(userEntity, userDto.Password);
 
-            var createdUser = await _userManager.FindByEmailAsync(userDto.Email);
-
-            await _folderService.CreateStandardFoldersForUserAsync(createdUser);
             return status;
         }
 
