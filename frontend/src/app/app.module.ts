@@ -21,6 +21,10 @@ import { RoundUserImageComponent } from './components/round-user-image/round-use
 import { RoundUserInitialsComponent } from './components/round-user-initials/round-user-initials.component';
 import { PasswordConfirmationComponent } from './components/password-confirmation/password-confirmation.component';
 import { EditUserInfoComponent } from './components/edit-user-info/edit-user-info.component';
+import { MailBoxComponent } from './components/mail-box/mail-box.component';
+import { FolderListComponent } from './components/folder-list/folder-list.component';
+import { FolderComponent } from './components/folder/folder.component';
+import { MailListComponent } from './components/mail-list/mail-list.component';
 
 export function tokenGetter(){
   return localStorage.getItem("JwtToken");
@@ -42,6 +46,10 @@ export function tokenGetter(){
     RoundUserInitialsComponent,
     PasswordConfirmationComponent,
     EditUserInfoComponent,
+    MailBoxComponent,
+    FolderListComponent,
+    FolderComponent,
+    MailListComponent,
   ],
   imports: [
     BrowserModule,

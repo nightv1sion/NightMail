@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { tokenGetter } from '../app.module';
 import { UserForEditDto } from '../data/datatransferbojects/UserForEditDto';
 import { User } from '../data/models/User';
+import { RequestHandlers } from '../shared/RequestHandlers';
 import { AuthenticationService } from './authentication.service';
 
 @Injectable({providedIn: "root"})
@@ -76,7 +77,3 @@ export class UserService {
    }
 }
 
-export interface RequestHandlers {
-  nextHandler?: Function,
-  errorHandler?: Function
-}
