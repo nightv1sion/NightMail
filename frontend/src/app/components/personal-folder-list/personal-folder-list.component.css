@@ -1,0 +1,20 @@
+.my-folders-tab{
+    display: flex;
+}
+
+.text {
+    flex: 80%;
+}
+
+.plus {
+    font-weight: bold;
+}
+
+.my-folders-list{
+    width: 90%;
+    margin-left:auto;
+}
+
+.my-folder{
+    font-size: 12px;
+}

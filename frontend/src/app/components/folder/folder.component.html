@@ -1,3 +1,4 @@
-<div class="folder">
-    <a class="folder-anchor">{{folder}}</a>
+<div class="folder" [ngClass]="this.folderService.currentFolder == folder ? 'folder-selected' : 'folder'">
+    <a class="folder-anchor" (click)="setThisFolder()" >{{folder.name}}</a>
 </div>
+

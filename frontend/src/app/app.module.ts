@@ -25,6 +25,10 @@ import { MailBoxComponent } from './components/mail-box/mail-box.component';
 import { FolderListComponent } from './components/folder-list/folder-list.component';
 import { FolderComponent } from './components/folder/folder.component';
 import { MailListComponent } from './components/mail-list/mail-list.component';
+import { IncomingFolderComponent } from './components/incoming-folder/incoming-folder.component';
+import { OutgoingFolderComponent } from './components/outgoing-folder/outgoing-folder.component';
+import { MailComponent } from './components/mail/mail.component';
+import { PersonalFolderListComponent } from './components/personal-folder-list/personal-folder-list.component';
 
 export function tokenGetter(){
   return localStorage.getItem("JwtToken");
@@ -50,6 +54,10 @@ export function tokenGetter(){
     FolderListComponent,
     FolderComponent,
     MailListComponent,
+    IncomingFolderComponent,
+    OutgoingFolderComponent,
+    MailComponent,
+    PersonalFolderListComponent,
   ],
   imports: [
     BrowserModule,

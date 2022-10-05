@@ -9,15 +9,11 @@ import { FolderService } from 'src/app/services/folder.service';
 })
 export class FolderListComponent implements OnInit {
   
-  folders: Folder[] = [];
 
   constructor(private folderService: FolderService) { }
 
   ngOnInit(): void {
-    this.folderService.getFolders({
-      nextHandler: (data: Folder[]) => this.folders = data,
-      errorHandler: (error: any) => console.log("Something went wrong when getting folders from the server: ", error)
-    });
+    
   }
 
   chooseFolder(folder: Folder){

@@ -1,0 +1,11 @@
+<div class="personal-folder-list">
+    <div class="my-folders-section">
+        <div class="my-folders-tab folder">
+            <p class="text">My Folders</p>
+            <p class="plus">+</p>
+        </div>
+        <div class="my-folders-list">
+            <app-folder *ngFor="let folder of folders" [folder]="folder" class="my-folder"></app-folder>
+        </div>
+    </div>
+</div>

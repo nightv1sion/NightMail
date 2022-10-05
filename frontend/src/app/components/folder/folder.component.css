@@ -1,4 +1,18 @@
-.folder-anchor{
+.folder {
     color: white;
-    font-size: 24px;
+    font-size: 20px;
+    padding-right: 5px;
+    padding-left: 5px;
 }
+
+
+
+.folder-selected {
+    color: white;
+    font-size: 20px;
+    background-color: rgba(217, 217, 217, 0.1);
+    border-radius: 20px;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+

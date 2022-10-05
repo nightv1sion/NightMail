@@ -1,5 +1,5 @@
 <div class="folder-list">
-    <app-folder [folder]="'Incoming Mails'" (click)="chooseIncomingFolder()"></app-folder>
-    <app-folder [folder]="'Outgoing Mails'" (click)="chooseOutgoingFolder()"></app-folder>
-    <app-folder *ngFor="let folder of folders" [folder]="folder.name" (click)="chooseFolder(folder)"></app-folder>
+    <app-incoming-folder></app-incoming-folder>
+    <app-outgoing-folder></app-outgoing-folder>
+    <app-personal-folder-list></app-personal-folder-list>
 </div>
