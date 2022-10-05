@@ -27,5 +27,13 @@ namespace Repository
             .Include(m => m.Receiver)
             .Include(m => m.Sender)
             .ToListAsync();
+
+        public async Task<List<Mail>> GetMailsInFolderForUserAsync(User user, Folder folder, bool trackChanges) =>
+            await FindByCondition(m => 
+            (m.SenderId == user.Id || m.ReceiverId == user.Id) &&
+            m.MailFolders.Select(mf => mf.Folder).Contains(folder), trackChanges)
+            .Include(m => m.Receiver)
+            .Include(m => m.Sender)
+            .ToListAsync();
     }
 }

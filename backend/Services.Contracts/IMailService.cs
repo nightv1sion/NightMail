@@ -9,8 +9,10 @@ namespace Services.Contracts
 {
     public interface IMailService
     {
-        Task CreateMailAsync(Guid senderId, MailDTO mailDto);
-        Task<List<IncomingMailDTO>> GetIncomingMailsAsync(Guid userId, bool trackChanges);
-        Task<List<OutgoingMailDTO>> GetOutgoingMailsAsync(Guid userId, bool trackChanges);
+        Task CreateMailAsync(Guid senderId, MailForCreateDTO mailDto);
+        Task<List<MailDTO>> GetIncomingMailsAsync(Guid userId, bool trackChanges);
+        Task<List<MailDTO>> GetOutgoingMailsAsync(Guid userId, bool trackChanges);
+        Task<List<MailDTO>> GetMailsForFolderAsync(Guid userId, Guid folderId, bool trackChanges);
+
     }
 }

@@ -19,15 +19,21 @@ namespace backend
             /*CreateMap<User, UserDTO>()
                 .ForMember(entity => entity.Image, opts => opts.MapFrom(dto => dto.UserProfileImage.ToIFormFile()));*/
 
-            CreateMap<MailDTO, Mail>();
+            CreateMap<MailForCreateDTO, Mail>();
 
-            CreateMap<Mail, IncomingMailDTO>()
+            /*CreateMap<Mail, IncomingMailDTO>()
                 .ForMember(dto => dto.SenderMail,
                 opts => opts.MapFrom(entity => entity.Sender.Email));
 
             CreateMap<Mail, OutgoingMailDTO>()
                 .ForMember(dto => dto.ReceiverMail,
-                opts => opts.MapFrom(entity => entity.Receiver.Email));
+                opts => opts.MapFrom(entity => entity.Receiver.Email));*/
+
+            CreateMap<Mail, MailDTO>()
+                .ForMember(dto => dto.SenderMail,
+                opts => opts.MapFrom(entity => entity.Sender.Email))
+                .ForMember(dto => dto.ReceiverMail,
+                    opts => opts.MapFrom(entity => entity.Receiver.Email));
 
             CreateMap<Folder, FolderDTO>()
                 .ForMember(dto => dto.CountOfMails,

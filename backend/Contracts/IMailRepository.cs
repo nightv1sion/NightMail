@@ -12,6 +12,6 @@ namespace Contracts
         void CreateMail(Mail mail);
         Task<List<Mail>> GetIncomingMailsForUserAsync(User user, bool trackChanges);
         Task<List<Mail>> GetOutgoingMailsForUserAsync(User user, bool trackChanges);
-
+        Task<List<Mail>> GetMailsInFolderForUserAsync(User user, Folder folder, bool trackChanges);
     }
 }

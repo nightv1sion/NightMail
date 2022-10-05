@@ -10,7 +10,9 @@ namespace Contracts
     public interface IFolderRepository
     {
         public void CreateFolder(Folder folder);
-        Task<List<Folder>> GetFoldersForUserAsync(User user, bool trackChanges);
-
+        Task<List<Folder>> GetFoldersAsync(User user, bool trackChanges);
+        Task<Folder> GetFolderAsync(User user, Guid folderId, bool trackChanges);
+        void DeleteFolder(Folder folder);
+        void UpdateFolder(Folder folder);
     }
 }

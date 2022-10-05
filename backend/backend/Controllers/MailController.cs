@@ -19,7 +19,7 @@ namespace backend.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> CreateMail(MailDTO mailDto)
+        public async Task<ActionResult> CreateMail(MailForCreateDTO mailDto)
         {
             Guid userId = GetUserId();
             await _service.MailService.CreateMailAsync(userId, mailDto);
@@ -44,12 +44,14 @@ namespace backend.Controllers
 
             return Ok(mails);
         }
-        /*[HttpGet("{folderId}")]
+        [HttpGet("{folderId:guid}")]
         public async Task<ActionResult> GetMailsFromCreatedFolder(Guid folderId)
         {
             Guid userId = GetUserId();
+            var mails = await _service.MailService.GetMailsForFolderAsync(userId, folderId,false);
             
-        }*/
+            return Ok(mails);
+        }
 
         private Guid GetUserId()
         {

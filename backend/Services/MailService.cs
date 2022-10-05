@@ -25,11 +25,9 @@ namespace Services
             _mailFolderService = mailFolderService;
         }
 
-        public async Task CreateMailAsync(Guid senderId, MailDTO mailDto)
+        public async Task CreateMailAsync(Guid senderId, MailForCreateDTO mailDto)
         {
-            var sender = _repository.User.GetUserById(senderId, false);
-            if (sender == null)
-                throw new UserNotFoundException(senderId);
+            var sender = GetUserAndIfItExists(senderId, false);
 
             var receiver = _repository.User.GetUserByEmail(mailDto.ReceiverMail, false);
 
@@ -43,41 +41,64 @@ namespace Services
 
             _repository.Mail.CreateMail(mail);
             await _repository.SaveAsync();
-
-            receiver.Folders = await _repository.Folder.GetFoldersForUserAsync(receiver, false);
-            var receiverIncomingFolder = receiver.Folders.FirstOrDefault(f => f.Name == "IncomingMails");
-
-            await _mailFolderService.CreateMailFolderAsync(mail, receiverIncomingFolder);
-
-            sender.Folders = await _repository.Folder.GetFoldersForUserAsync(sender, false);
-            var senderOutgoingFolder = sender.Folders.FirstOrDefault(f => f.Name == "OutgoingMails");
-
-            await _mailFolderService.CreateMailFolderAsync(mail, senderOutgoingFolder);
         }
 
-        public async Task<List<IncomingMailDTO>> GetIncomingMailsAsync(Guid userId, bool trackChanges)
+        public async Task<List<MailDTO>> GetIncomingMailsAsync(Guid userId, bool trackChanges)
         {
-            var user = _repository.User.GetUserById(userId, false);
-            if (user == null)
-                throw new UserNotFoundException(userId);
+            var user = GetUserAndIfItExists(userId, trackChanges);
 
             var mailEntities = await _repository.Mail.GetIncomingMailsForUserAsync(user, trackChanges);
 
-            var mails = _mapper.Map<List<IncomingMailDTO>>(mailEntities);
+            var mails = _mapper.Map<List<MailDTO>>(mailEntities);
+            mails.ForEach(m => m.IsSent = false);
 
             return mails;
         }
-        public async Task<List<OutgoingMailDTO>> GetOutgoingMailsAsync(Guid userId, bool trackChanges)
+        public async Task<List<MailDTO>> GetOutgoingMailsAsync(Guid userId, bool trackChanges)
+        {
+            var user = GetUserAndIfItExists(userId, trackChanges);
+
+            var mailEntities = await _repository.Mail.GetOutgoingMailsForUserAsync(user, trackChanges);
+
+            var mails = _mapper.Map<List<MailDTO>>(mailEntities);
+            mails.ForEach(m => m.IsSent = true);
+
+            return mails;
+        }
+
+        public async Task<List<MailDTO>> GetMailsForFolderAsync(Guid userId, Guid folderId, bool trackChanges)
+        {
+            var user = GetUserAndIfItExists(userId, trackChanges);
+
+            var folder = (await _repository.Folder.GetFoldersAsync(user, trackChanges)).FirstOrDefault(f => f.FolderId == folderId);
+
+            if (folder == null)
+                throw new FolderNotFoundException(userId, folderId);
+
+            var mails = await _repository.Mail.GetMailsInFolderForUserAsync(user, folder, trackChanges);
+
+            var mailsDto = _mapper.Map<List<MailDTO>>(mails);
+            mailsDto.ForEach(m => m.IsSent = user.Email == m.SenderMail);
+
+            return mailsDto;
+        }
+
+        private User GetUserAndIfItExists(Guid userId, bool trackChanges)
         {
             var user = _repository.User.GetUserById(userId, false);
             if (user == null)
                 throw new UserNotFoundException(userId);
 
-            var mailEntities = await _repository.Mail.GetOutgoingMailsForUserAsync(user, trackChanges);
+            return user;
+        }
 
-            var mails = _mapper.Map<List<OutgoingMailDTO>>(mailEntities);
+        private User GetUserAndIfItExists(string email, bool trackChanges)
+        {
+            var user = _repository.User.GetUserByEmail(email, false);
+            if (user == null)
+                throw new UserNotFoundException(email);
 
-            return mails;
+            return user;
         }
     }
 }
