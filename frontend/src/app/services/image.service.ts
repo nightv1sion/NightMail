@@ -11,6 +11,5 @@ export class ImageService {
     return this.sanitizer.bypassSecurityTrustUrl(imageUrl);
   }
 
-
   constructor(private sanitizer: DomSanitizer) { }
 }

@@ -29,6 +29,11 @@ import { IncomingFolderComponent } from './components/incoming-folder/incoming-f
 import { OutgoingFolderComponent } from './components/outgoing-folder/outgoing-folder.component';
 import { MailComponent } from './components/mail/mail.component';
 import { PersonalFolderListComponent } from './components/personal-folder-list/personal-folder-list.component';
+import { FolderCreationModalComponent } from './components/folder-creation-modal/folder-creation-modal.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSliderModule } from '@angular/material/slider'
+import { MatMenuModule } from '@angular/material/menu';
+import { FolderEditionModalComponent } from './components/folder-edition-modal/folder-edition-modal.component'
 
 export function tokenGetter(){
   return localStorage.getItem("JwtToken");
@@ -58,12 +63,17 @@ export function tokenGetter(){
     OutgoingFolderComponent,
     MailComponent,
     PersonalFolderListComponent,
+    FolderCreationModalComponent,
+    FolderEditionModalComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatSliderModule,
+    MatMenuModule,
   ],
   providers: [UserService,
     AuthenticationService, 

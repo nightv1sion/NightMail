@@ -29,8 +29,15 @@ export class EditUserInfoComponent implements OnInit {
 
 
   constructor(public userService: UserService, private router: Router, private imageService: ImageService) {
-      if(!userService.userConfirmation)
+      
+    if(!userService.userConfirmation)
+    {
       router.navigate(["user/passwordconfirmation"]);
+      console.log("User not confirmed");      
+    }    
+    else {
+      console.log("User is confirmed");
+    }
       this.onSubmit = this.onSubmit.bind(this);
   }
 

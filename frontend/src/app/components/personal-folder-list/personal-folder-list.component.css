@@ -18,3 +18,9 @@
 .my-folder{
     font-size: 12px;
 }
+
+.personal-folder-list{
+    height: 180px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}

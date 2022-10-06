@@ -17,12 +17,27 @@ export class FolderService {
   folderEmitter = new EventEmitter<Folder>();
 
   constructor(private http: HttpClient) {
+    this.setIncomingFolder();
   }
 
   getFolders(handlers: RequestHandlers){
     return this.http.get<Folder[]>(environment.apiUrl + "/folder/all").subscribe({
-      next: (data: Folder[]) => {if(handlers.nextHandler) handlers.nextHandler(data); this.isIncoming = true;},
+      next: (data: Folder[]) => {if(handlers.nextHandler) handlers.nextHandler(data);},
       error: (error) => {if(handlers.errorHandler) handlers.errorHandler(error)}
+    });
+  }
+
+  postFolder(handlers: RequestHandlers, name: string){
+    return this.http.post(environment.apiUrl + "/folder/", JSON.stringify(name), {headers: {"Content-Type": "application/json"}}).subscribe({
+      next: (data) => {if(handlers.nextHandler) handlers.nextHandler(data);},
+      error: (error) => {if(handlers.errorHandler) handlers.errorHandler(error);}
+    });
+  }
+
+  deleteFolder(handlers: RequestHandlers, folder: Folder){
+    return this.http.delete(environment.apiUrl + "/folder/" + folder.folderId).subscribe({
+      next: (data) => {if(handlers.nextHandler) handlers.nextHandler(data); this.folderEmitter.emit();},
+      error: (error) => {if(handlers.errorHandler) handlers.errorHandler(error);}
     });
   }
 

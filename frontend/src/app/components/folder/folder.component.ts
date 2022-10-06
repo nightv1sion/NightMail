@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Folder } from 'src/app/data/models/Folder';
 import { FolderService } from 'src/app/services/folder.service';
+import {MatMenuTrigger} from '@angular/material/menu';
 
 @Component({
   selector: 'app-folder',
@@ -12,6 +13,28 @@ export class FolderComponent implements OnInit {
   // @Input() folder!: string;
   @Input() folder!: Folder;
 
+  // we create an object that contains coordinates 
+  menuTopLeftPosition =  {x: '0', y: '0'} 
+ 
+  // reference to the MatMenuTrigger in the DOM 
+  @ViewChild(MatMenuTrigger, {static: true}) matMenuTrigger!: MatMenuTrigger; 
+ 
+  
+  onRightClick(event: MouseEvent) { 
+      event.preventDefault(); 
+ 
+      this.menuTopLeftPosition.x = event.clientX + 'px'; 
+      this.menuTopLeftPosition.y = event.clientY + 'px'; 
+ 
+      
+      this.matMenuTrigger.openMenu(); 
+ 
+  } 
+
+  onDelete(){
+    this.folderService.deleteFolder({
+    }, this.folder)
+  }
 
 
   constructor(public folderService: FolderService) { 
@@ -23,6 +46,9 @@ export class FolderComponent implements OnInit {
 
   setThisFolder(){
     this.folderService.setFolder(this.folder);
+  }
+  onMouseRight(){
+    
   }
 }
 

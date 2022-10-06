@@ -32,7 +32,7 @@ export class PasswordConfirmationComponent implements OnInit {
   }
 
   onSubmit(){
-    this.userService.confirmUserPassword(this.password, {nextHandler: (data: any) => this.router.navigate(["/user/edit"]), 
+    this.userService.confirmUserPassword(this.password, {nextHandler: (data: any) => { this.userService.userConfirmation = true; this.router.navigate(["user/edit"] )}, 
     errorHandler: (data: any) => {
       if(data.status == 401) 
         this.errorMessage = "Password is wrong"; 

@@ -10,14 +10,26 @@ import { FolderService } from 'src/app/services/folder.service';
 export class PersonalFolderListComponent implements OnInit {
 
   folders: Folder[] = [];
+  
 
-  constructor(private folderService: FolderService) { }
+  constructor(private folderService: FolderService) {
+    folderService.folderEmitter.pipe().subscribe(p => this.getFolders());
+   }
+
+   
 
   ngOnInit(): void {
+    this.getFolders();
+  }
+
+  getFolders(){
     this.folderService.getFolders({
       nextHandler: (data: Folder[]) => this.folders = data,
       errorHandler: (error: any) => console.log("Something went wrong when getting folders from the server: ", error)
     });
   }
 
+  openCreationNewFolderWindow(){
+    
+  }
 }

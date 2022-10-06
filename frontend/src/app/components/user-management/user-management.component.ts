@@ -30,7 +30,7 @@ export class UserManagementComponent implements OnInit {
   }
 
   goToEditProfile(){
-    this.router.navigate(["user/edit"])
+    this.router.navigate(["auth","user", "edit"])
   }
 
   ngOnInit(): void {

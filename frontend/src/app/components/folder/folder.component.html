@@ -1,4 +1,17 @@
-<div class="folder" [ngClass]="this.folderService.currentFolder == folder ? 'folder-selected' : 'folder'">
+<div class="folder" [ngClass]="this.folderService.currentFolder?.folderId === folder.folderId? 'folder-selected' : 'folder'" (contextmenu)="onRightClick($event)">
     <a class="folder-anchor" (click)="setThisFolder()" >{{folder.name}}</a>
 </div>
 
+<div style="visibility: hidden; position: absolute; margin-left: 2%;" 
+[style.left]="menuTopLeftPosition.x" 
+[style.top]="menuTopLeftPosition.y" 
+[matMenuTriggerFor]="rightMenu"></div> 
+ 
+<!-- standard material menu --> 
+<mat-menu #rightMenu="matMenu"> 
+  <ng-template matMenuContent> 
+    <app-folder-edition-modal [folder]="folder"></app-folder-edition-modal>
+    
+    <button mat-menu-item style="width: 150px" (click)="onDelete()">Delete</button> 
+  </ng-template> 
+</mat-menu> 
