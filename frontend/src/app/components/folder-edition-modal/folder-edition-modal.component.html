@@ -1,17 +1,17 @@
 <!-- Button trigger modal -->
-<button type="button" mat-menu-item style="width: 150px" data-bs-toggle="modal" data-target="#exampleModalToggle1">
+<button type="button" mat-menu-item style="width: 150px" data-bs-toggle="modal" data-target="#second-modal">
     <div class="my-folders-tab folder">
         Edit
     </div>
 </button>    
 <!-- Modal -->
 
-<div class="modal fade" id="exampleModalToggle1" aria-hidden="true" aria-labelledby="exampleModalToggleLabel1" tabindex="-1">
+<div class="modal fade" id="second-modalToggle" aria-hidden="true" aria-labelledby="second-modalLabel1" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalToggleLabel1">Edit folder</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h5 class="modal-title" id="second-modalToggleLabel">Edit folder</h5>
+            <button type="button" class="btn btn-second-modal-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
         <div class="modal-body">
             <app-error-message [errorMessage]="errorMessage"></app-error-message>
@@ -23,9 +23,21 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-primary" (click)="onSubmit(cancelButton)">Edit Folder</button>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" #cancelButton>Cancel</button>
+            <button type="button" class="btn btn-secondary btn-second-modal-close" data-bs-dismiss="modal" #cancelButton>Cancel</button>
       
           </div>
       </div>
     </div>
   </div>
+  
+  <script>
+    var within_first_modal = false;
+$('.btn-second-modal').on('click', function() {
+  $('#second-modal').modal('show');
+});
+
+$('.btn-second-modal-close').on('click', function() {
+  $('#second-modal').modal('hide');
+});
+
+  </script>

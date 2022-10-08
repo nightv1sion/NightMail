@@ -1,0 +1,15 @@
+.mail {
+    display: flex;
+    color: white;
+    border: 1px solid white;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 1%;
+    width: 100%;
+}
+
+.user-email {
+    border-right: 1px solid white;
+}
+.user-email, .subject, .date {
+}
