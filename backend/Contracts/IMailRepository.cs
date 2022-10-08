@@ -13,5 +13,7 @@ namespace Contracts
         Task<List<Mail>> GetIncomingMailsForUserAsync(User user, bool trackChanges);
         Task<List<Mail>> GetOutgoingMailsForUserAsync(User user, bool trackChanges);
         Task<List<Mail>> GetMailsInFolderForUserAsync(User user, Folder folder, bool trackChanges);
+        Task<Mail> GetMailForUserAsync(User user, Guid mailId, bool trackChanges);
+
     }
 }

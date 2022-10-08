@@ -43,7 +43,7 @@ namespace backend.Controllers
             return Ok();
         }
 
-        [HttpPut("{folderId}")]
+        [HttpPut("{folderId:guid}")]
         public async Task<ActionResult> UpdateFolder(Guid folderId, [FromBody] string newName)
         {
             var userId = GetUserId();
@@ -52,6 +52,13 @@ namespace backend.Controllers
             return Ok();
         }
 
+        [HttpPost("{folderId:guid}/include-mail/{mailId:guid}")]
+        public async Task<ActionResult> IncludeMail(Guid folderId, Guid mailId)
+        {
+            var userId = GetUserId();
+            await _service.FolderService.IncludeMailAsync(userId, folderId, mailId);
+            return Ok();
+        }
         private Guid GetUserId()
         {
             return Guid.Parse(User.Claims.FirstOrDefault(c => c.Type == "UserId").Value);

@@ -10,7 +10,7 @@ namespace Services.Contracts
 {
     public interface IFolderService
     {
-        Task CreateStandardFoldersAsync(User user);
+        Task IncludeMailAsync(Guid userId, Guid folderId, Guid mailId);
         Task<List<FolderDTO>> GetFoldersAsync(Guid userId, bool trackChanges);
         Task CreateFolderAsync(Guid userId, string folderName);
         Task DeleteFolderAsync(Guid userId, Guid folderId);

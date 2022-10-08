@@ -17,26 +17,25 @@ namespace Services
     {
         private readonly IRepositoryManager _repository;
         private readonly IMapper _mapper;
+        private readonly MailFolderService _mailFolderService;
 
-        public FolderService(IRepositoryManager repository, IMapper mapper)
+        public FolderService(IRepositoryManager repository, IMapper mapper, MailFolderService mailFolderService)
         {
             _repository = repository;
             _mapper = mapper;
+            _mailFolderService = mailFolderService;
         }
 
-        public async Task CreateStandardFoldersAsync(User user)
+        public async Task IncludeMailAsync(Guid userId, Guid folderId, Guid mailId)
         {
-            Folder incomingFolder = new Folder() { Name = "Incoming Emails", User = user, UserId = user.Id };
-            Folder outgoingFolder = new Folder() { Name = "Outgoing Emails", User = user, UserId = user.Id };
-            Folder spamFolder = new Folder() { Name = "Spam Emails", User = user, UserId = user.Id };
+            var user = GetUserAndCheckIfItExists(userId, false);
+            var folder = await GetFolderAndCheckIfItExistsAsync(user, folderId, false);
+            var mail = await _repository.Mail.GetMailForUserAsync(user, mailId, false);
+            if (mail is null)
+                throw new MailNotFoundException(mailId);
 
-            _repository.Folder.CreateFolder(incomingFolder);
-            _repository.Folder.CreateFolder(outgoingFolder);
-            _repository.Folder.CreateFolder(spamFolder);
-
-            await _repository.SaveAsync();
+            await _mailFolderService.CreateMailFolderAsync(mail, folder);
         }
-
         public async Task<List<FolderDTO>> GetFoldersAsync(Guid userId, bool trackChanges)
         {
             var user = GetUserAndCheckIfItExists(userId, trackChanges);

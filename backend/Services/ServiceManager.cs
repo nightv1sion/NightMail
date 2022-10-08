@@ -23,11 +23,11 @@ namespace Services
         private Lazy<IMailFolderService> _mailFolderService;
         public ServiceManager(UserManager<User> userManager, IMapper mapper, IConfiguration configuration, IRepositoryManager repository)
         {
-            _authentication = new Lazy<IAuthenticationService>(new AuthenticationService(new FolderService(repository, mapper), userManager, mapper, configuration, repository));
+            _authentication = new Lazy<IAuthenticationService>(new AuthenticationService(new FolderService(repository, mapper, new MailFolderService(repository)), userManager, mapper, configuration, repository));
             _userService = new Lazy<IUserService>(new UserService(repository, mapper));
             _userImageService = new Lazy<IUserProfileImageService>(new UserProfileImageService(repository));
             _mailService = new Lazy<IMailService>(new MailService(repository, mapper, new MailFolderService(repository)));
-            _folderService = new Lazy<IFolderService>(new FolderService(repository, mapper));
+            _folderService = new Lazy<IFolderService>(new FolderService(repository, mapper, new MailFolderService(repository)));
             _mailFolderService = new Lazy<IMailFolderService>(new MailFolderService(repository));
 
         }

@@ -35,5 +35,9 @@ namespace Repository
             .Include(m => m.Receiver)
             .Include(m => m.Sender)
             .ToListAsync();
+
+        public async Task<Mail> GetMailForUserAsync(User user, Guid mailId, bool trackChanges) =>
+            await FindByCondition(m => (m.SenderId == user.Id || m.ReceiverId == user.Id) && m.MailId == mailId, trackChanges)
+            .FirstOrDefaultAsync();
     }
 }
