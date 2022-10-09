@@ -10,8 +10,8 @@
 <!-- standard material menu --> 
 <mat-menu #rightMenu="matMenu"> 
   <ng-template matMenuContent> 
-    <app-folder-edition-modal [folder]="folder"></app-folder-edition-modal>
-    
+    <button mat-menu-item style="width: 150px" (click)="onEdit()">Edit</button> 
+
     <button mat-menu-item style="width: 150px" (click)="onDelete()">Delete</button> 
   </ng-template> 
 </mat-menu> 

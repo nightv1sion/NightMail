@@ -41,6 +41,13 @@ export class FolderService {
     });
   }
 
+  putFolder(handlers: RequestHandlers, folder: Folder){
+    return this.http.put(environment.apiUrl + "/folder/" + folder.folderId, JSON.stringify(folder.name), {headers: {"Content-Type": "application/json"}}).subscribe({
+      next: (data) => {if(handlers.nextHandler) handlers.nextHandler(data); this.folderEmitter.emit();},
+      error: (error) => {if(handlers.errorHandler) handlers.errorHandler(error);}
+    });
+  }
+
   setFolder(folder: Folder){
     this.currentFolder = folder;
     this.isIncoming = false;

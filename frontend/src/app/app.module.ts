@@ -33,7 +33,11 @@ import { FolderCreationModalComponent } from './components/folder-creation-modal
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider'
 import { MatMenuModule } from '@angular/material/menu';
-import { FolderEditionModalComponent } from './components/folder-edition-modal/folder-edition-modal.component'
+import { FolderEditionModalComponent } from './components/folder-edition-modal/folder-edition-modal.component';
+import { DialogComponent } from './components/dialog/dialog.component'
+import { MatDialogModule } from '@angular/material/dialog';
+import { CdkAccordionModule } from '@angular/cdk/accordion';
+import { DialogCreateMailComponent } from './components/dialog-create-mail/dialog-create-mail.component';
 
 export function tokenGetter(){
   return localStorage.getItem("JwtToken");
@@ -65,6 +69,8 @@ export function tokenGetter(){
     PersonalFolderListComponent,
     FolderCreationModalComponent,
     FolderEditionModalComponent,
+    DialogComponent,
+    DialogCreateMailComponent,
   ],
   imports: [
     BrowserModule,
@@ -74,6 +80,8 @@ export function tokenGetter(){
     BrowserAnimationsModule,
     MatSliderModule,
     MatMenuModule,
+    MatDialogModule,
+    CdkAccordionModule
   ],
   providers: [UserService,
     AuthenticationService, 

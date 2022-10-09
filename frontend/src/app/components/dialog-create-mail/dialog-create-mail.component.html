@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>Write an Email</h1>
+<div mat-dialog-content>
+    <div class="receiver">
+        <label>Receiver mail:</label>
+    <input type="text" [(ngModel)]="receiverMail"/>
+    </div>
+    <div class="subject">
+        <label>Mail subject:</label>
+    <input type="text" [(ngModel)]="mailSubject"/>
+    </div>
+    <div class="mailText">
+        <label>Mail Text:</label>
+        <br>
+        <textarea [(ngModel)]="mailText">
+        </textarea>
+    </div>
+</div>
+<div>
+    <button (click)="onSubmit()" mat-button mat-dialog-close>Save</button>
+    <button mat-button mat-dlalog-close (click)="onClose()">Close</button>
+</div>

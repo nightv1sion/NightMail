@@ -1,7 +1,9 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Injector, Input, OnInit, ViewChild } from '@angular/core';
 import { Folder } from 'src/app/data/models/Folder';
 import { FolderService } from 'src/app/services/folder.service';
 import {MatMenuTrigger} from '@angular/material/menu';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-folder',
@@ -37,7 +39,7 @@ export class FolderComponent implements OnInit {
   }
 
 
-  constructor(public folderService: FolderService) { 
+  constructor(public folderService: FolderService, private injector: Injector) { 
 
   }
 
@@ -49,6 +51,20 @@ export class FolderComponent implements OnInit {
   }
   onMouseRight(){
     
+  }
+
+  onEdit(){
+    let dialog = this.injector.get(MatDialog);
+    let dialogRef = dialog.open(DialogComponent);
+    dialogRef.componentInstance.folder = this.folder;
+    dialogRef.componentInstance.onSave = (folder: Folder) => {
+      this.folderService.putFolder({
+      }, this.folder);
+    };
+
+    dialogRef.componentInstance.onClose = () => {
+      dialog.closeAll();
+    }
   }
 }
 

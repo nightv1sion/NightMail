@@ -10,6 +10,8 @@ export class MailComponent implements OnInit {
 
   @Input() mail!: Mail;
 
+  private idAccordion: number = Math.random();
+
   constructor() { }
 
   ngOnInit(): void {

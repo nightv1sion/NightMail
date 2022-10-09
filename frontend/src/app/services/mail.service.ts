@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { MailDTO } from '../data/datatransferbojects/MailDTO';
 import { RequestHandlers } from '../shared/RequestHandlers';
 import { FolderService } from './folder.service';
 
@@ -48,5 +49,13 @@ export class MailService {
       next: (data) => {if(handlers.nextHandler) handlers.nextHandler(data)},
       error: (error) => {if(handlers.errorHandler) handlers.errorHandler(error)}
     });
+  }
+
+  public postMail(handlers: RequestHandlers, mail: MailDTO){
+    mail.creationDateTime = new Date();
+    return this.http.post(environment.apiUrl + "/mail", JSON.stringify(mail), {headers: {"Content-Type": "application/json"}}).subscribe({
+      next: (data) => {if(handlers.nextHandler) handlers.nextHandler(data)},
+      error: (error) => {if(handlers.errorHandler) handlers.errorHandler(error)}
+    });;
   }
 }

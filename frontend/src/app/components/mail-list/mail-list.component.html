@@ -1,1 +1,30 @@
-<app-mail *ngFor="let mail of mails" [mail]="mail"></app-mail>
+<!-- <app-mail *ngFor="let mail of mails" [mail]="mail"></app-mail> -->
+<cdk-accordion class="example-accordion">
+    <cdk-accordion-item
+      *ngFor="let mail of mails; let index = index;"
+      #accordionItem="cdkAccordionItem"
+      class="example-accordion-item"
+      role="button"
+      tabindex="0"
+      [attr.id]="'accordion-header-' + index"
+      [attr.aria-expanded]="accordionItem.expanded"
+      [attr.aria-controls]="'accordion-body-' + index">
+      <div class="example-accordion-item-header" (click)="accordionItem.toggle()">
+        <div class="mail-header">
+            <div class="mail-user">{{ mail.IsSent == true ? mail.receiverMail : mail.senderMail}}</div>
+            <div class="mail-subject">{{mail.subject}}</div>
+        </div>
+        <span class="example-accordion-item-description">
+          Click to {{ accordionItem.expanded ? 'close' : 'open' }}
+        </span>
+      </div>
+      <div  
+        class="example-accordion-item-body"
+        role="region"
+        [style.display]="accordionItem.expanded ? '' : 'none'"
+        [attr.id]="'accordion-body-' + index"
+        [attr.aria-labelledby]="'accordion-header-' + index">
+        {{mail.text}}
+      </div>
+    </cdk-accordion-item>
+  </cdk-accordion>

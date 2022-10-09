@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Edit Folder</h1>
+<div mat-dialog-content>
+    <label>Name:</label>
+    <input type="text" [(ngModel)]="folder.name"/>
+</div>
+<div>
+    <button (click)="onSubmit()" mat-button mat-dialog-close>Save</button>
+    <button mat-button mat-dlalog-close (click)="onClose()">Close</button>
+</div>

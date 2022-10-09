@@ -1,10 +1,10 @@
 <div class="header">
     <div class="logo-link">
-        <a routerLink="">NightMail</a>
+        <a routerLink="mailbox">NightMail</a>
     </div>
 
     <div *ngIf="user" class="add-account-button-wrapper">
-            <a [routerLink]="'/'">
+            <a [routerLink]="'auth'">
                 <div class="userImage" *ngIf="userImage">
                     <app-round-user-image [image]="userImage"></app-round-user-image>
                 </div>
@@ -14,7 +14,7 @@
             </a>
     
             
-            <a [routerLink]="'/'">
+            <a [routerLink]="'auth'">
                 <div class="userFullName">
                     <p>
                         {{user.firstName}}

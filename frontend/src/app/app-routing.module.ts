@@ -21,9 +21,6 @@ const routes: Routes = [
   {
     path: "mailbox", component: MailBoxComponent
   },
-  {
-    path: "**", redirectTo: "auth"
-  }
 ];
 
 @NgModule({
