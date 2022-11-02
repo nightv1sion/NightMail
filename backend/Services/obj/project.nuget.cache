@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZVjBsiLcj0jpPagWBzb9SOTJnE2PEDjYZrE33zfk5g+U6JPOinyGCh3M3foLwKGo/dMRKvKpbvWJ3+jM0gsbeA==",
+  "dgSpecHash": "COP/6e5HHIHeG5n/hEEPG8sFJGgG5cwCK9yF/k+ts5d0CL+zxDjkgTOQSOgXFTHlG7zJvV1XXidtWEr1dYVvXA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Данила\\Desktop\\pet-projects\\NightMail\\backend\\Services\\Services.csproj",
+  "projectFilePath": "C:\\Users\\Данила\\Desktop\\pet-projects\\nightmail\\backend\\Services\\Services.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Данила\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
     "C:\\Users\\Данила\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",

@@ -1,5 +1,7 @@
 using backend;
 using backend.Extensions;
+using Microsoft.EntityFrameworkCore;
+using Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,6 +45,16 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+using(var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetService<RepositoryContext>();
+    if(context.Database.GetPendingMigrations().Any())
+    {
+        context.Database.Migrate();    
+    }
+}
 
 app.Run();
 

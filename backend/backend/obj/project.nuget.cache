@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "PRjiJia21FFONTlmu0/WAMFuNfMFDssuNknR/gdYj8+/ilbRV9iCni7EQMGnS2TYOGO1pZEa4hsohuBtXLxlZw==",
+  "dgSpecHash": "GT7qjeWQmhxJOFFJSe8a+mhF9PNkPb2SH19hzQ2PPIRyoHQFu3jfTXgk+J+VpFhLrGMocoElWfX5UH6VQ/QD0g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Данила\\Desktop\\pet-projects\\NightMail\\backend\\backend\\backend.csproj",
+  "projectFilePath": "C:\\Users\\Данила\\Desktop\\pet-projects\\nightmail\\backend\\backend\\backend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Данила\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
     "C:\\Users\\Данила\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",

@@ -18,7 +18,5 @@ namespace Repository
         public User GetUserByEmail(string email, bool trackChanges) => 
             FindByCondition(u => u.Email == email, trackChanges).FirstOrDefault();
         public void UpdateUser(User user) => Update(user);
-
-        
     }
 }

@@ -43,7 +43,11 @@ export class UserManagementComponent implements OnInit {
           errorHandler: (err: any) => {
             this.logOut();
           }});
-      }
+    }
+    else 
+    {
+      this.router.navigate(["auth"]);
+    }
   }
 
 }

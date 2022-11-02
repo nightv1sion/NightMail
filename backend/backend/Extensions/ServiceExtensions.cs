@@ -102,7 +102,7 @@ namespace backend.Extensions
         {
             services.AddCors(options => options.AddPolicy("_policy", policy =>
             {
-                policy.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod();
+                policy.WithOrigins("http://localhost:8080").AllowAnyHeader().AllowAnyMethod();
             }));
         }
     }

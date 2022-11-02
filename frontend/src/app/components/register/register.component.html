@@ -71,5 +71,5 @@
         <app-bordered-button [onSubmit]="onSubmit" [textButton]="'Register'" *ngIf="firstName.valid && lastName.valid && email.valid && password.valid && matchingPassword(password, confirmPassword) && birthdayIsValid() && birthday.valid"></app-bordered-button>
         <app-disabled-bordered-button [textButton]="'Register'" *ngIf="firstName.invalid || lastName.invalid || email.invalid || password.invalid || !matchingPassword(password, confirmPassword) || !birthdayIsValid() || birthday.invalid"></app-disabled-bordered-button>
 
-    <app-blue-link [routerLink]="'/login'" [textLink]="'Have     an Account?'"></app-blue-link>
+    <app-blue-link [routerLink]="'/auth/login'" [textLink]="'Have     an Account?'"></app-blue-link>
 </div>

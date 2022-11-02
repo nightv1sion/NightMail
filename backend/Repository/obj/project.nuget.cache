@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1DxzRwWoUzp3Uk30To8TeKZ6DSeFxJJSDUtv6E9ZhQB7TFD7KNMQ14bcdyFZ0PhJmj/YMHwyA1y5rFSyP/gxxA==",
+  "dgSpecHash": "yjJOstDCuC62cl+n5UYxWdqBIQ4jxzFT+6gUPtc/rOwwyFeguiRT1tlODRu1AC7NMPVQgjXnqpu3QyzdzQxrng==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Данила\\Desktop\\pet-projects\\NightMail\\backend\\Repository\\Repository.csproj",
+  "projectFilePath": "C:\\Users\\Данила\\Desktop\\pet-projects\\nightmail\\backend\\Repository\\Repository.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Данила\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.8\\microsoft.aspnetcore.cryptography.internal.6.0.8.nupkg.sha512",
     "C:\\Users\\Данила\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\6.0.8\\microsoft.aspnetcore.cryptography.keyderivation.6.0.8.nupkg.sha512",

@@ -24,5 +24,5 @@
         <app-bordered-button [onSubmit]="onSubmit" [textButton]="'Login'" *ngIf="email.valid && password.valid"></app-bordered-button>
         <app-disabled-bordered-button [textButton]="'Login'" *ngIf="email.invalid || password.invalid"></app-disabled-bordered-button>
 
-    <app-blue-link [routerLink]="'/register'" [textLink]="'Dont have an Account?'"></app-blue-link>
+    <app-blue-link [routerLink]="'/auth/register'" [textLink]="'Dont have an Account?'"></app-blue-link>
 </div>

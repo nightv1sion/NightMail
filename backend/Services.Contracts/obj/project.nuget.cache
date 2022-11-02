@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "21YZUJ3uDXzoJ2xnXtLz9zD3a9mJZQ4u4GyLfi3AlllCLsllcdHCFCTFKcsMDw6DIfFO/P7uQDgnZ2Qi5QdPTQ==",
+  "dgSpecHash": "cj4W/mUwZ7stUci2DgGN9Xo/KINX/MvXy909K8Bqel7my7dMjDC4J6IH9h7zW6D013MeiuCUd9JHXnR5BTZqmA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Данила\\Desktop\\pet-projects\\NightMail\\backend\\Services.Contracts\\Services.Contracts.csproj",
+  "projectFilePath": "C:\\Users\\Данила\\Desktop\\pet-projects\\nightmail\\backend\\Services.Contracts\\Services.Contracts.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Данила\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\Данила\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
